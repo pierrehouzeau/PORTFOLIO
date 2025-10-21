@@ -10,6 +10,7 @@
 !assets/js/
 !assets/js/includes.js
 !assets/js/base-site.js
+!assets/js/animations-accueil.js
 !partials/
 !partials/en-tete.html
 !partials/accueil.html
@@ -25,4 +26,3 @@ Thumbs.db
 *.swp
 *.log
 *:Zone.Identifier
-

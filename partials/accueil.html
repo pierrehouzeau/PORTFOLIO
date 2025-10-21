@@ -1,11 +1,17 @@
 <section id="accueil" class="hero section-full">
+  <canvas id="fx" class="fx-canvas" aria-hidden="true"></canvas>
+  <div class="decor-grid" aria-hidden="true"></div>
+  <div class="blob" aria-hidden="true"></div>
   <div class="container wrap" style="position:relative; z-index:2;">
     <div class="hero-text">
       <h1 class="title">Bonjour, je suis Pierre — étudiant à Epitech.</h1>
       <p class="subtitle">Je conçois des outils simples, fiables et utiles. Spécialisations&nbsp;: IA, cybersécurité, back‑end.</p>
     </div>
     <div class="hero-photo">
-      <img class="pfp" src="assets/profile.jpg" alt="Photo de Pierre Houzeau"/>
+      <div class="orbit">
+        <img class="pfp" src="assets/profile.jpg" alt="Photo de Pierre Houzeau"/>
+        <span class="ring"><span class="dot"></span></span>
+      </div>
     </div>
   </div>
 </section>

@@ -26,7 +26,32 @@
     },{rootMargin:'-50% 0px -50% 0px'});
     all.forEach(s=>io.observe(s));
 
-    // Header intelligent: cache en scroll descendant, affiche en scroll montant
-    // Header toujours visible (fixe) — pas de logique de masquage
+    // Menu burger (mobile)
+    const toggle=document.getElementById('menuToggle');
+    const nav=document.getElementById('navMenu');
+    if(toggle && nav){
+      const root=document.documentElement;
+      toggle.addEventListener('click',()=>{
+        const open=!root.classList.contains('menu-ouvert');
+        root.classList.toggle('menu-ouvert', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      // Fermer au clic sur un lien
+      nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+        root.classList.remove('menu-ouvert'); toggle.setAttribute('aria-expanded','false');
+      }));
+      // Fermer sur Esc
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='Escape'){ root.classList.remove('menu-ouvert'); toggle.setAttribute('aria-expanded','false'); }
+      });
+      // Fermer au clic en dehors
+      document.addEventListener('click', (e)=>{
+        const t=e.target;
+        if(!root.classList.contains('menu-ouvert')) return;
+        if(!nav.contains(t) && t!==toggle && !toggle.contains(t)){
+          root.classList.remove('menu-ouvert'); toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    }
   });
 })();
