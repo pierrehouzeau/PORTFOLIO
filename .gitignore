@@ -1,0 +1,28 @@
+# Ignore everything by default
+/*
+
+# Allow base files and folders
+!.gitignore
+!index.html
+!assets/
+!assets/css/
+!assets/css/style.css
+!assets/js/
+!assets/js/includes.js
+!assets/js/base-site.js
+!partials/
+!partials/en-tete.html
+!partials/accueil.html
+!partials/projets.html
+!partials/cv-section.html
+!partials/contact.html
+!partials/pied-de-page.html
+
+# OS/editor noise
+*.DS_Store
+Thumbs.db
+*~
+*.swp
+*.log
+*:Zone.Identifier
+
