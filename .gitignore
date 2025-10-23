@@ -21,6 +21,10 @@
 !react/
 !react/**
 
+# React cleanup: ignore build and deps
+react/node_modules/
+react/dist/
+
 # OS/editor noise
 *.DS_Store
 Thumbs.db
