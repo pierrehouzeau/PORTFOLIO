@@ -8,17 +8,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
+  
 </head>
 <body>
   <div data-include="partials/en-tete.html"></div>
   <div data-include="partials/accueil.html"></div>
   <div data-include="partials/projets.html"></div>
-  <div data-include="partials/cv-section.html"></div>
   <div data-include="partials/contact.html"></div>
   <div data-include="partials/pied-de-page.html"></div>
 
   <script src="assets/js/includes.js" defer></script>
+  <script src="assets/js/projets.js" defer></script>
   <script src="assets/js/base-site.js" defer></script>
   <script src="assets/js/animations-accueil.js" defer></script>
+  <!-- Cursor FX now handled by React island (CursorFX) in react/dist/assets/bar.js -->
+  <!-- Îlot React: Progress bar (bundle local) -->
+  <script type="module" src="react/dist/assets/bar.js"></script>
 </body>
 </html>

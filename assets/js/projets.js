@@ -1,5 +1,6 @@
 // Rendu dynamique de la section Projets (grille + cartes)
 (function(){
+  const GITHUB_PROFILE = 'https://github.com/pierrehouzeau';
   function el(tag, cls, html){ const n=document.createElement(tag); if(cls) n.className=cls; if(html!==undefined) n.innerHTML=html; return n; }
   function hash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31 + s.charCodeAt(i))|0; } return Math.abs(h); }
   function gradientFor(){ return `linear-gradient(135deg,#e6f0ff,#ece7ff 60%,#e7fff5)` }
@@ -40,7 +41,7 @@
     if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); info.appendChild(tags); }
     const actions=el('div','cta');
     if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
-    if(p.links?.github){ const g=el('a','btn','GitHub'); g.href=p.links.github; g.target='_blank'; g.rel='noreferrer noopener'; actions.appendChild(g); }
+    const g1=el('a','btn','GitHub'); const repo=(p.links&&p.links.github)||GITHUB_PROFILE; g1.href=repo; g1.target='_blank'; g1.rel='noreferrer noopener'; g1.setAttribute('aria-label',`Ouvrir ${p.title} sur GitHub`); actions.appendChild(g1);
     info.appendChild(actions);
 
     // Description courte (un seul paragraphe explicatif)
@@ -65,6 +66,20 @@
 
   function renderProjectCard(p){
     const card=el('article','card project');
+    // Rendre la carte cliquable pour ouvrir les détails
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.addEventListener('click', (e)=>{
+      // Ne pas interférer avec les liens internes (Demo/GitHub)
+      if(e.target.closest('a,button')) return;
+      openModal(p);
+    });
+    card.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openModal(p);
+      }
+    });
 
     // Vignette
     const thumb=el('div','thumb');
@@ -82,13 +97,10 @@
     // Tags
     if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); content.appendChild(tags); }
 
-    // Actions
+    // Actions (sans bouton "Détails" — la carte est cliquable)
     const actions=el('div','cta');
-    const more=el('button','btn','Détails');
-    more.type='button'; more.addEventListener('click', (e)=>{ e.stopPropagation(); openModal(p); });
-    actions.appendChild(more);
     if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
-    if(p.links?.github){ const g=el('a','btn','GitHub'); g.href=p.links.github; g.target='_blank'; g.rel='noreferrer noopener'; actions.appendChild(g); }
+    const g=el('a','btn','GitHub'); const repoUrl=(p.links&&p.links.github)||GITHUB_PROFILE; g.href=repoUrl; g.target='_blank'; g.rel='noreferrer noopener'; g.setAttribute('aria-label',`Ouvrir ${p.title} sur GitHub`); actions.appendChild(g);
     content.appendChild(actions);
 
     card.appendChild(content);

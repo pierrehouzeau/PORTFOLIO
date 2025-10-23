@@ -18,6 +18,8 @@
 !partials/cv-section.html
 !partials/contact.html
 !partials/pied-de-page.html
+!react/
+!react/**
 
 # OS/editor noise
 *.DS_Store
