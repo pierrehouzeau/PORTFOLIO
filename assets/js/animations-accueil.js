@@ -5,23 +5,29 @@
   function resize(canvas){ const r=canvas.parentElement.getBoundingClientRect(); W=canvas.width=Math.floor(r.width*dpr); H=canvas.height=Math.floor(r.height*dpr); canvas.style.width=r.width+'px'; canvas.style.height=r.height+'px'; }
 
   function init(){
-    // Style unique pour TOUTES les bandes (mêmes visuels pour éviter un effet de couches)
-    const style={ hue: 222+Math.random()*6, sat: 72, alpha: 0.18, width: 4*dpr };
+    // Harmonise les bandes avec le dégradé de la scroll-bar (bleu → violet → vert)
+    const style={
+      alpha: 0.22,
+      width: 3*dpr,
+      colors: [
+        'rgba(96,165,250,0.9)',   // #60a5fa
+        'rgba(167,139,250,0.9)',  // #a78bfa
+        'rgba(52,211,153,0.9)'    // #34d399
+      ]
+    };
 
     const back=[]; // 2 lignes (même style que les autres)
     for(let i=0;i<2;i++){
-      const hue=style.hue, sat=style.sat, alpha=style.alpha;
       const offset=Math.random()*1000;
       const pts=[]; const S=6; for(let s=0;s<=S;s++){ const t=s/S; const x=t*W; const y=(Math.random())*H; pts.push({x,y,dy:y}); }
-      back.push({hue,sat,alpha,offset,pts});
+      back.push({offset,pts});
     }
     const ribbons=[]; // 3 autres lignes (identiques en style)
     const bases=[0.22,0.46,0.70];
     for(let i=0;i<bases.length;i++){
-      const hue=style.hue, sat=style.sat, alpha=style.alpha;
       const offset=Math.random()*1000;
       const pts=[]; const S=8; for(let s=0;s<=S;s++){ const t=s/S; const x=t*W; const y=(Math.random())*H; pts.push({x,y,dy:y}); }
-      ribbons.push({hue,sat,alpha,offset,pts});
+      ribbons.push({offset,pts});
     }
     state={back,ribbons,t:0,style};
   }
@@ -42,8 +48,15 @@
         const target=Math.max(margin, Math.min(H-margin, y));
         p.dy += (target - p.dy) * smooth; }
       ctx.beginPath(); for(let i=0;i<r.pts.length;i++){ const p=r.pts[i]; const pr=r.pts[i-1]; if(i===0) ctx.moveTo(p.x,p.dy); else { const mx=(pr.x+p.x)/2; const my=(pr.dy+p.dy)/2; ctx.quadraticCurveTo(pr.x,pr.dy,mx,my);} }
-      const g=ctx.createLinearGradient(0,0,W,0); g.addColorStop(0,`hsla(${d.style.hue},${d.style.sat}%,60%,${d.style.alpha})`); g.addColorStop(1,`hsla(${d.style.hue+12},${d.style.sat-8}%,56%,${d.style.alpha})`);
-      ctx.strokeStyle=g; ctx.lineWidth=d.style.width; ctx.lineCap='round'; ctx.stroke(); }
+      const g=ctx.createLinearGradient(0,0,W,0);
+      g.addColorStop(0, d.style.colors[0]);
+      g.addColorStop(0.5, d.style.colors[1]);
+      g.addColorStop(1, d.style.colors[2]);
+      ctx.strokeStyle=g; ctx.lineWidth=d.style.width; ctx.lineCap='round';
+      ctx.globalAlpha=d.style.alpha; ctx.shadowBlur=6*dpr; ctx.shadowColor='rgba(96,165,250,0.18)';
+      ctx.stroke();
+      ctx.shadowBlur=0; ctx.globalAlpha=1;
+    }
     ctx.globalCompositeOperation='source-over'; rafId=requestAnimationFrame(()=>draw(ctx)); }
 
   function start(){ const canvas=document.getElementById('fx'); if(!canvas) return; const ctx=canvas.getContext('2d'); dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1)); resize(canvas); init(); cancelAnimationFrame(rafId); rafId=requestAnimationFrame(()=>draw(ctx)); }

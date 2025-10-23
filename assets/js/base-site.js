@@ -26,6 +26,8 @@
     },{rootMargin:'-50% 0px -50% 0px'});
     all.forEach(s=>io.observe(s));
 
+    // Barre de progression gérée par l'îlot React (Framer) — pas de fallback vanilla
+
     // Menu burger (mobile)
     const toggle=document.getElementById('menuToggle');
     const nav=document.getElementById('navMenu');
