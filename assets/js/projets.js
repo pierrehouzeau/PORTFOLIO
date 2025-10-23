@@ -1,0 +1,117 @@
+// Rendu dynamique de la section Projets (grille + cartes)
+(function(){
+  function el(tag, cls, html){ const n=document.createElement(tag); if(cls) n.className=cls; if(html!==undefined) n.innerHTML=html; return n; }
+  function hash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31 + s.charCodeAt(i))|0; } return Math.abs(h); }
+  function gradientFor(){ return `linear-gradient(135deg,#e6f0ff,#ece7ff 60%,#e7fff5)` }
+
+  // Modal singleton
+  let modal, modalContent, modalScreen;
+  function ensureModal(){
+    if(modal) return modal;
+    modal = el('div','modal-overlay');
+    modal.innerHTML = '';
+    const dialog = el('div','modal-dialog');
+    const close = el('button','modal-close','×'); close.setAttribute('aria-label','Fermer');
+    modalContent = el('div','modal-content');
+    dialog.append(close, modalContent);
+    modal.appendChild(dialog);
+    document.body.appendChild(modal);
+    // close handlers
+    function hide(){ modal.classList.remove('open'); document.body.classList.remove('modal-open'); }
+    close.addEventListener('click', hide);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) hide(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('open')) hide(); });
+    return modal;
+  }
+  function openModal(p){
+    ensureModal();
+    modalContent.innerHTML='';
+    const header = el('div','modal-header');
+    const cover = el('div','modal-cover');
+    // Plus d'images: on utilise un fond par défaut cohérent
+    cover.style.background = gradientFor(p);
+
+    const info = el('div','modal-info');
+    info.append(
+      el('h3','modal-title', p.title),
+      el('div','muted', `${p.year} • ${p.tech?.join(', ')||''}`),
+      el('p','', p.summary||'')
+    );
+    if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); info.appendChild(tags); }
+    const actions=el('div','cta');
+    if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
+    if(p.links?.github){ const g=el('a','btn','GitHub'); g.href=p.links.github; g.target='_blank'; g.rel='noreferrer noopener'; actions.appendChild(g); }
+    info.appendChild(actions);
+
+    // Description courte (un seul paragraphe explicatif)
+    const desc=el('div','modal-desc');
+    desc.appendChild(el('p','', p.summary || "Aperçu du projet."));
+
+    const body = el('div','modal-body');
+    body.append(info, desc);
+    header.append(cover);
+    modalContent.append(header, body);
+
+    // open
+    document.body.classList.add('modal-open');
+    modal.classList.add('open');
+  }
+
+  function typeWriter(target, text, speed=12){
+    target.textContent=''; let i=0; const id=setInterval(()=>{
+      target.textContent += text[i++]||''; if(i>=text.length){ clearInterval(id);} }, speed);
+    return ()=>clearInterval(id);
+  }
+
+  function renderProjectCard(p){
+    const card=el('article','card project');
+
+    // Vignette
+    const thumb=el('div','thumb');
+    // Placeholder visuel uniforme (pas d'images pour le moment)
+    thumb.style.background = gradientFor();
+    card.appendChild(thumb);
+
+    // Contenu
+    const content=el('div','content');
+    const title=el('h3','', p.title);
+    const meta=el('div','muted', `${p.year} • ${p.tech?.join(', ')||''}`);
+    const sum=el('p','', p.summary||'');
+    content.append(title, meta, sum);
+
+    // Tags
+    if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); content.appendChild(tags); }
+
+    // Actions
+    const actions=el('div','cta');
+    const more=el('button','btn','Détails');
+    more.type='button'; more.addEventListener('click', (e)=>{ e.stopPropagation(); openModal(p); });
+    actions.appendChild(more);
+    if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
+    if(p.links?.github){ const g=el('a','btn','GitHub'); g.href=p.links.github; g.target='_blank'; g.rel='noreferrer noopener'; actions.appendChild(g); }
+    content.appendChild(actions);
+
+    card.appendChild(content);
+
+    return card;
+  }
+
+  async function loadProjects(){
+    const grid=document.getElementById('projectGrid'); if(!grid) return;
+    grid.classList.add('grid','projects-grid');
+    try{
+      const res=await fetch('assets/data/projects.json', {cache:'no-cache'});
+      const list=await res.json();
+      const frag=document.createDocumentFragment();
+      list.forEach(p=> frag.appendChild(renderProjectCard(p)));
+      grid.innerHTML=''; grid.appendChild(frag);
+      // Animation d’apparition
+      const io=new IntersectionObserver((ents)=>{
+        ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+      },{root:null, rootMargin:'0px', threshold:0.15});
+      grid.querySelectorAll('.project').forEach(n=> io.observe(n));
+    }catch(err){ console.error('Projects load failed', err); grid.textContent='Impossible de charger les projets.'; }
+  }
+
+  document.addEventListener('includes-loaded', loadProjects);
+})();

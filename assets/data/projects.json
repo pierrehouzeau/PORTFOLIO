@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "slug": "jobboard",
+    "title": "Job Board — plateforme d'offres",
+    "year": 2024,
+    "tech": ["HTML", "CSS", "JavaScript", "FastAPI", "MySQL"],
+    "tags": ["Web", "Back‑end", "API", "DB"],
+    "summary": "CRUD offres/entreprises, auth, recherche full‑text, API REST FastAPI et persistance MySQL.",
+    "detail": "$ alembic upgrade head\n[OK] tables: users, companies, jobs\n$ uvicorn api.main:app --reload\nGET /jobs?q=python → 42 résultats\nPOST /jobs {title:\"Dev FastAPI\"} → 201",
+    "links": {"github": "#", "demo": "#"}
+  },
+  {
+    "id": 2,
+    "slug": "cv-interactif",
+    "title": "CV interactif",
+    "year": 2024,
+    "tech": ["HTML", "CSS"],
+    "tags": ["Front", "UI", "Portfolio"],
+    "summary": "CV animé et accessible, sections pliables, thème clair/sombre et export PDF responsive.",
+    "detail": "$ open index.html\nSections: expérience/skills/formation\nExport PDF → cv-pierre.pdf\nAudit accessibilité: pass (contrast, tab, aria)",
+    "links": {"github": "#", "demo": "#"}
+  },
+  {
+    "id": 3,
+    "slug": "meteo-ml",
+    "title": "Prédiction météo (Machine Learning)",
+    "year": 2023,
+    "tech": ["Python", "Pandas", "scikit‑learn"],
+    "tags": ["ML", "Data", "Time Series"],
+    "summary": "Prétraitement météo, features temporelles et régression (RandomForest) pour prédire température/pluie.",
+    "detail": "$ python train.py --dataset meteo.csv\nFeatures: lag[1..7], rolling[7,14]\nRMSE(temp): 1.9 — RMSE(pluie): 0.12\nExport → models/meteo_rf.joblib",
+    "links": {"github": "#", "demo": "#"}
+  }
+]
