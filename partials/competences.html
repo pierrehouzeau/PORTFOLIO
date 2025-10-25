@@ -15,61 +15,30 @@
       <button class="tab" aria-pressed="false" data-cat="outils">Outils</button>
     </div>
 
-    <div class="skill-groups" id="skillGroups">
-      <section class="skill-group card" data-cat="langages" aria-labelledby="tab-langages">
-        <h3 id="tab-langages">Langages</h3>
-        <div class="skills-tiles">
-          <button class="tile" title="JavaScript" aria-label="JavaScript"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt=""><span>JavaScript</span></button>
-          <button class="tile" title="Python" aria-label="Python"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt=""><span>Python</span></button>
-          <button class="tile" title="Java" aria-label="Java"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/java.svg" alt=""><span>Java</span></button>
-          <button class="tile" title="PHP" aria-label="PHP"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg" alt=""><span>PHP</span></button>
-          <button class="tile" title="SQL" aria-label="SQL"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt=""><span>SQL</span></button>
-        </div>
-      </section>
-
-      <section class="skill-group card" data-cat="frontend" aria-labelledby="tab-frontend">
-        <h3 id="tab-frontend">Front‑end</h3>
-        <div class="skills-tiles">
-          <button class="tile" title="HTML" aria-label="HTML"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt=""><span>HTML</span></button>
-          <button class="tile" title="CSS" aria-label="CSS"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt=""><span>CSS</span></button>
-          <button class="tile" title="React" aria-label="React"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg" alt=""><span>React</span></button>
-          <button class="tile" title="Vite" aria-label="Vite"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vite.svg" alt=""><span>Vite</span></button>
-        </div>
-      </section>
-
-      <section class="skill-group card" data-cat="backend" aria-labelledby="tab-backend">
-        <h3 id="tab-backend">Back‑end</h3>
-        <div class="skills-tiles">
-          <button class="tile" title="FastAPI" aria-label="FastAPI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg" alt=""><span>FastAPI</span></button>
-        </div>
-      </section>
-
-      <section class="skill-group card" data-cat="data-ml" aria-labelledby="tab-data-ml">
-        <h3 id="tab-data-ml">Data / ML</h3>
-        <div class="skills-tiles">
-          <button class="tile" title="Pandas" aria-label="Pandas"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt=""><span>Pandas</span></button>
-          <button class="tile" title="scikit-learn" aria-label="scikit-learn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt=""><span>scikit‑learn</span></button>
-        </div>
-      </section>
-
-      <section class="skill-group card" data-cat="db" aria-labelledby="tab-db">
-        <h3 id="tab-db">Base de données</h3>
-        <div class="skills-tiles">
-          <button class="tile" title="MySQL" aria-label="MySQL"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt=""><span>MySQL</span></button>
-        </div>
-      </section>
-
-      <section class="skill-group card" data-cat="outils" aria-labelledby="tab-outils">
-        <h3 id="tab-outils">Outils</h3>
-        <div class="skills-tiles">
-          <button class="tile" title="Git" aria-label="Git"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt=""><span>Git</span></button>
-          <button class="tile" title="GitHub" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt=""><span>GitHub</span></button>
-          <button class="tile" title="npm" aria-label="npm"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/npm.svg" alt=""><span>npm</span></button>
-        </div>
-      </section>
+    <!-- Grille à plat unique (toutes les tuiles) -->
+    <div id="skillsAll" class="skills-tiles" aria-live="polite">
+      <!-- Langages -->
+      <button class="tile" data-cat="langages" title="JavaScript" aria-label="JavaScript"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt=""><span>JavaScript</span></button>
+      <button class="tile" data-cat="langages" title="Python" aria-label="Python"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt=""><span>Python</span></button>
+      <button class="tile" data-cat="langages" title="Java" aria-label="Java"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt=""><span>Java</span></button>
+      <button class="tile" data-cat="langages" title="PHP" aria-label="PHP"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt=""><span>PHP</span></button>
+      <button class="tile" data-cat="langages" title="SQL" aria-label="SQL"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt=""><span>SQL</span></button>
+      <!-- Front‑end -->
+      <button class="tile" data-cat="frontend" title="HTML" aria-label="HTML"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt=""><span>HTML</span></button>
+      <button class="tile" data-cat="frontend" title="CSS" aria-label="CSS"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt=""><span>CSS</span></button>
+      <button class="tile" data-cat="frontend" title="React" aria-label="React"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg" alt=""><span>React</span></button>
+      <button class="tile" data-cat="frontend" title="Vite" aria-label="Vite"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vite.svg" alt=""><span>Vite</span></button>
+      <!-- Back‑end -->
+      <button class="tile" data-cat="backend" title="FastAPI" aria-label="FastAPI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg" alt=""><span>FastAPI</span></button>
+      <!-- Data / ML -->
+      <button class="tile" data-cat="data-ml" title="Pandas" aria-label="Pandas"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt=""><span>Pandas</span></button>
+      <button class="tile" data-cat="data-ml" title="scikit-learn" aria-label="scikit-learn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt=""><span>scikit‑learn</span></button>
+      <!-- DB -->
+      <button class="tile" data-cat="db" title="MySQL" aria-label="MySQL"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt=""><span>MySQL</span></button>
+      <!-- Outils -->
+      <button class="tile" data-cat="outils" title="Git" aria-label="Git"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt=""><span>Git</span></button>
+      <button class="tile" data-cat="outils" title="GitHub" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt=""><span>GitHub</span></button>
+      <button class="tile" data-cat="outils" title="npm" aria-label="npm"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/npm.svg" alt=""><span>npm</span></button>
     </div>
-
-    <!-- Grille à plat générée par JS (toutes les tuiles) -->
-    <div id="skillsAll" class="skills-tiles" aria-live="polite"></div>
   </div>
 </section>

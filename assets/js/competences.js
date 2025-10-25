@@ -1,25 +1,11 @@
 // Tabs de catégories pour Compétences
 (function(){
   function initFilters(){
-    const groups = document.getElementById('skillGroups');
     const allGrid = document.getElementById('skillsAll');
     const chips = document.querySelectorAll('.skill-tabs .tab');
-    if(!groups || !allGrid || !chips.length) return;
+    if(!allGrid || !chips.length) return;
 
-    // Construire la grille à plat à partir des groupes (déplacer les tuiles au lieu de cloner)
-    const tiles = [];
-    groups.querySelectorAll('.skill-group').forEach(group => {
-      const cat = group.dataset.cat;
-      group.querySelectorAll('.tile').forEach(t => {
-        t.dataset.cat = cat; // pour filtrage multi
-        tiles.push(t);
-      });
-    });
-    const frag = document.createDocumentFragment();
-    tiles.forEach(t => frag.appendChild(t));
-    allGrid.appendChild(frag);
-    // Masquer les groupes (on travaille sur la grille à plat)
-    groups.style.display = 'none';
+    const tiles = Array.from(allGrid.querySelectorAll('.tile'));
 
     // Assure la visibilité immédiate des tuiles même si l'animation s'est initialisée avant
     requestAnimationFrame(() => tiles.forEach(t => t.classList.add('in')));
