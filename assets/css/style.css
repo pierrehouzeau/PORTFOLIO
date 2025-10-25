@@ -207,7 +207,14 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 @media(max-width: 900px){ .skills-grid{ grid-template-columns: 1fr 1fr } }
 @media(max-width: 620px){ .skills-grid{ grid-template-columns: 1fr } }
 .skill-cat h3{ margin:0 0 8px; font-size:16px }
-.skill-cat .tags{ display:flex; flex-wrap:wrap; gap:8px }
+.skill-cat .icons{ display:flex; flex-wrap:wrap; gap:10px }
+.skill{ width:56px; height:56px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); background:#fff; border-radius:14px; box-shadow: var(--shadow); transition: transform .12s ease, box-shadow .2s ease }
+.skill:hover{ transform: translateY(-2px); box-shadow: 0 16px 40px rgba(2,6,23,.12) }
+.skill img{ width:28px; height:28px; filter: grayscale(15%); opacity:.95 }
+.sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
+
+#competences{ position:relative }
+#competences::before{ content:""; position:absolute; inset:-40px 0 -40px 0; background: linear-gradient(180deg,#fff,#f7f9ff); z-index:-1 }
 
 /* Canvas layer (hero) */
 .fx-canvas{position:absolute; inset:0; z-index:1; pointer-events:none}
