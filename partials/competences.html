@@ -2,12 +2,22 @@
   <div class="container">
     <div class="section-head">
       <h2>Compétences</h2>
-      <p class="subtitle">Technos principales — défilé continu et interactif.</p>
+      <p class="subtitle">Technos principales — naviguez par catégorie.</p>
     </div>
 
-    <div class="skill-groups">
-      <section class="skill-group card">
-        <h3>Langages</h3>
+    <div class="skill-tabs" role="tablist" aria-label="Catégories de compétences">
+      <button class="tab active" role="tab" aria-selected="true" data-cat="all">Tous</button>
+      <button class="tab" role="tab" aria-selected="false" data-cat="langages">Langages</button>
+      <button class="tab" role="tab" aria-selected="false" data-cat="frontend">Front‑end</button>
+      <button class="tab" role="tab" aria-selected="false" data-cat="backend">Back‑end</button>
+      <button class="tab" role="tab" aria-selected="false" data-cat="data-ml">Data / ML</button>
+      <button class="tab" role="tab" aria-selected="false" data-cat="db">Base de données</button>
+      <button class="tab" role="tab" aria-selected="false" data-cat="outils">Outils</button>
+    </div>
+
+    <div class="skill-groups" id="skillGroups">
+      <section class="skill-group card" data-cat="langages" aria-labelledby="tab-langages">
+        <h3 id="tab-langages">Langages</h3>
         <div class="skills-tiles">
           <button class="tile" title="JavaScript" aria-label="JavaScript"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt=""><span>JavaScript</span></button>
           <button class="tile" title="Python" aria-label="Python"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt=""><span>Python</span></button>
@@ -17,8 +27,8 @@
         </div>
       </section>
 
-      <section class="skill-group card">
-        <h3>Front‑end</h3>
+      <section class="skill-group card" data-cat="frontend" aria-labelledby="tab-frontend">
+        <h3 id="tab-frontend">Front‑end</h3>
         <div class="skills-tiles">
           <button class="tile" title="HTML" aria-label="HTML"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt=""><span>HTML</span></button>
           <button class="tile" title="CSS" aria-label="CSS"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt=""><span>CSS</span></button>
@@ -27,30 +37,30 @@
         </div>
       </section>
 
-      <section class="skill-group card">
-        <h3>Back‑end</h3>
+      <section class="skill-group card" data-cat="backend" aria-labelledby="tab-backend">
+        <h3 id="tab-backend">Back‑end</h3>
         <div class="skills-tiles">
           <button class="tile" title="FastAPI" aria-label="FastAPI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg" alt=""><span>FastAPI</span></button>
         </div>
       </section>
 
-      <section class="skill-group card">
-        <h3>Data / ML</h3>
+      <section class="skill-group card" data-cat="data-ml" aria-labelledby="tab-data-ml">
+        <h3 id="tab-data-ml">Data / ML</h3>
         <div class="skills-tiles">
           <button class="tile" title="Pandas" aria-label="Pandas"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt=""><span>Pandas</span></button>
           <button class="tile" title="scikit-learn" aria-label="scikit-learn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt=""><span>scikit‑learn</span></button>
         </div>
       </section>
 
-      <section class="skill-group card">
-        <h3>Base de données</h3>
+      <section class="skill-group card" data-cat="db" aria-labelledby="tab-db">
+        <h3 id="tab-db">Base de données</h3>
         <div class="skills-tiles">
           <button class="tile" title="MySQL" aria-label="MySQL"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt=""><span>MySQL</span></button>
         </div>
       </section>
 
-      <section class="skill-group card">
-        <h3>Outils</h3>
+      <section class="skill-group card" data-cat="outils" aria-labelledby="tab-outils">
+        <h3 id="tab-outils">Outils</h3>
         <div class="skills-tiles">
           <button class="tile" title="Git" aria-label="Git"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt=""><span>Git</span></button>
           <button class="tile" title="GitHub" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt=""><span>GitHub</span></button>
