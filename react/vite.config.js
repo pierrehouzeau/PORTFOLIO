@@ -3,6 +3,10 @@ import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  // Base publique pour GitHub Pages (repo projet sous /PORTFOLIO/)
+  // Cela garantit que les assets référencés depuis le bundle
+  // pointent vers /PORTFOLIO/react/dist/...
+  base: '/PORTFOLIO/react/dist/',
   plugins: [react()],
   publicDir: false,
   server: { port: 5173 },
