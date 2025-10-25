@@ -4,6 +4,25 @@
   function el(tag, cls, html){ const n=document.createElement(tag); if(cls) n.className=cls; if(html!==undefined) n.innerHTML=html; return n; }
   function hash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31 + s.charCodeAt(i))|0; } return Math.abs(h); }
   function gradientFor(){ return `linear-gradient(135deg,#e6f0ff,#ece7ff 60%,#e7fff5)` }
+  // Mapping d'icônes pour les technos (noir/blanc via Simple Icons)
+  const ICONS = {
+    'html': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg',
+    'css': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg',
+    'css3': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg',
+    'javascript': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg',
+    'fastapi': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg',
+    'mysql': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg',
+    'python': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg',
+    'pandas': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg',
+    'scikitlearn': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg'
+  }
+  function techSlug(t){
+    const s = (t||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
+    if(s==='html') return 'html';
+    if(s==='css') return 'css3';
+    if(s==='scikitlearn') return 'scikitlearn';
+    return s;
+  }
 
   // Modal singleton + accessibilité (focus trap, ARIA)
   let modal, modalContent;
@@ -77,24 +96,6 @@
     );
     // Icônes de technos (modale)
     const techIconsModal = el('div','tech-icons');
-    const ICONS = {
-      'html': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg',
-      'css': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg',
-      'css3': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg',
-      'javascript': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg',
-      'fastapi': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg',
-      'mysql': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg',
-      'python': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg',
-      'pandas': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg',
-      'scikitlearn': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg'
-    };
-    function techSlug(t){
-      const s = (t||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
-      if(s==='html') return 'html';
-      if(s==='css') return 'css3';
-      if(s==='scikitlearn') return 'scikitlearn';
-      return s;
-    }
     (p.tech||[]).forEach(t=>{ const u=ICONS[techSlug(t)]; if(u){ const im=document.createElement('img'); im.src=u; im.alt=t; im.title=t; techIconsModal.appendChild(im);} });
     info.appendChild(techIconsModal);
     if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); info.appendChild(tags); }
