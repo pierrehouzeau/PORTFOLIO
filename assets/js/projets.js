@@ -72,9 +72,31 @@
     if(dialogEl) dialogEl.setAttribute('aria-labelledby','modal-title');
     info.append(
       titleEl,
-      el('div','muted', `${p.year} • ${p.tech?.join(', ')||''}`),
+      el('div','muted', `${p.year}`),
       el('p','', p.summary||'')
     );
+    // Icônes de technos (modale)
+    const techIconsModal = el('div','tech-icons');
+    const ICONS = {
+      'html': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg',
+      'css': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg',
+      'css3': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg',
+      'javascript': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg',
+      'fastapi': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg',
+      'mysql': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg',
+      'python': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg',
+      'pandas': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg',
+      'scikitlearn': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg'
+    };
+    function techSlug(t){
+      const s = (t||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
+      if(s==='html') return 'html';
+      if(s==='css') return 'css3';
+      if(s==='scikitlearn') return 'scikitlearn';
+      return s;
+    }
+    (p.tech||[]).forEach(t=>{ const u=ICONS[techSlug(t)]; if(u){ const im=document.createElement('img'); im.src=u; im.alt=t; im.title=t; techIconsModal.appendChild(im);} });
+    info.appendChild(techIconsModal);
     if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); info.appendChild(tags); }
     const actions=el('div','cta');
     if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
@@ -149,9 +171,13 @@
     // Contenu
     const content=el('div','content');
     const title=el('h3','', p.title);
-    const meta=el('div','muted', `${p.year} • ${p.tech?.join(', ')||''}`);
+    const meta=el('div','muted', `${p.year}`);
     const sum=el('p','', p.summary||'');
-    content.append(title, meta, sum);
+    content.append(title, meta);
+    // Icônes technos (carte)
+    const techIcons = el('div','tech-icons');
+    (p.tech||[]).forEach(t=>{ const u=ICONS[techSlug(t)]; if(u){ const im=document.createElement('img'); im.src=u; im.alt=t; im.title=t; techIcons.appendChild(im);} });
+    content.append(techIcons, sum);
 
     // Tags
     if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); content.appendChild(tags); }

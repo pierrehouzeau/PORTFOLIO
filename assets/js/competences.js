@@ -23,9 +23,21 @@
       });
 
       tiles.forEach(t => {
-        if(showAll){ t.style.display=''; return; }
-        const ok = selected.has(t.dataset.cat);
-        t.style.display = ok ? '' : 'none';
+        const shouldShow = showAll ? true : selected.has(t.dataset.cat);
+        const currentlyHidden = t.style.display === 'none';
+        if(shouldShow && currentlyHidden){
+          t.style.display='';
+          t.classList.remove('swirl-out');
+          // force reflow to restart animation
+          void t.offsetWidth;
+          t.classList.add('swirl-in');
+          t.addEventListener('animationend', ()=> t.classList.remove('swirl-in'), { once:true });
+        }else if(!shouldShow && !currentlyHidden){
+          t.classList.remove('swirl-in');
+          void t.offsetWidth;
+          t.classList.add('swirl-out');
+          t.addEventListener('animationend', ()=>{ t.style.display='none'; t.classList.remove('swirl-out'); }, { once:true });
+        }
       });
       // Laisse la grille s'étendre si besoin (évite la coupe)
       allGrid.style.height = 'auto';

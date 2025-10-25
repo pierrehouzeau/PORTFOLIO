@@ -149,6 +149,8 @@ section::after{  bottom:0; background:linear-gradient(0deg, rgba(2,6,23,.06), tr
 @keyframes scan{ 50%{ transform: translateX(20%) } 100%{ transform: translateX(120%) } }
 .tag{display:inline-block; padding:6px 10px; border-radius:999px; background:#f1f5f9; color:#0b1220; border:1px solid var(--line); font-weight:600; font-size:12px}
 .tags{display:flex;gap:8px;flex-wrap:wrap}
+.tech-icons{ display:flex; gap:8px; align-items:center; margin:6px 0 8px }
+.tech-icons img{ width:18px; height:18px; filter: grayscale(100%); opacity:.9 }
 .open-indicator{position:absolute; right:12px; top:12px; font-size:12px; background:#0b1220; color:#fff; padding:4px 8px; border-radius:999px}
 
 /* Aligner les boutons (CTA) en bas de chaque carte pour un rendu homogène */
@@ -236,6 +238,10 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 
 .tile.in{ opacity:1; transform:none }
 .tile:hover{ transform: translateY(-4px) scale(1.03); box-shadow:0 20px 50px rgba(2,6,23,.14) }
+.tile.swirl-in{ animation: swirlIn .32s ease both }
+.tile.swirl-out{ animation: swirlOut .24s ease both }
+@keyframes swirlIn{ from{ opacity:0; transform: translateY(-8px) scale(.85) rotate(12deg) } to{ opacity:1; transform:none } }
+@keyframes swirlOut{ from{ opacity:1; transform:none } to{ opacity:0; transform: translateY(8px) scale(.85) rotate(-12deg) } }
 .tile img{ width:36px; height:36px; filter: grayscale(100%); opacity:.95 }
 .tile span{ font-weight:700; font-size:13px }
 .sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
