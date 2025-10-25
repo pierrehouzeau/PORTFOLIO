@@ -30,6 +30,6 @@
     "tags": ["ML", "Data", "Time Series"],
     "summary": "Prétraitement météo, features temporelles et régression (RandomForest) pour prédire température/pluie.",
     "detail": "$ python train.py --dataset meteo.csv\nFeatures: lag[1..7], rolling[7,14]\nRMSE(temp): 1.9 — RMSE(pluie): 0.12\nExport → models/meteo_rf.joblib",
-    "links": {"github": "https://github.com/pierrehouzeau", "demo": "#"}
+    "links": {"github": "https://github.com/pierrehouzeau/ozone-ml-regression", "demo": "#"}
   }
 ]
