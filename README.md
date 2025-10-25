@@ -1,6 +1,8 @@
 # Portfolio — Pierre Houzeau
 
-Accès: https://pierrehouzeau.github.io/PORTFOLIO/
+## Accès
+
+- Version en ligne: https://pierrehouzeau.github.io/PORTFOLIO/
 
 Site statique (HTML/CSS/JS) avec un îlot React pour quelques effets (barre de scroll, curseur). Sections: Accueil, Projets (cartes + modale), Compétences (filtre multi), Contact.
 
