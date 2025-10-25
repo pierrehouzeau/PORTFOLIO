@@ -9,8 +9,8 @@
     "tags": ["Web", "Back‑end", "API", "DB"],
     "summary": "CRUD offres/entreprises, auth, recherche full‑text, API REST FastAPI et persistance MySQL.",
     "about": [
-      "Plateforme de mise en relation candidats/entreprises avec une logique simple de \"matching\" (likes/candidatures). Le backend est réalisé en FastAPI avec une base MySQL, une authentification JWT et une gestion des rôles (candidat, recruteur, admin). Un front de démo statique consomme l’API pour illustrer les principaux parcours.",
-      "Fonctionnalités clés : création/gestion des entreprises et offres, profils candidats, candidatures, notifications, upload d’images, recherche et pagination. La sécurité repose sur des endpoints protégés (JWT) et des autorisations par rôle. Qualité technique : schéma clair des routes, CORS pour le dev, configuration via .env. Mon rôle : conception du schéma et des routes API, auth/autorisation, intégration MySQL, front de démo et jeux de données."
+      "Plateforme candidats/entreprises avec \"matching\" (likes/candidatures). API FastAPI + MySQL.",
+      "Rôle : schéma/Routes, auth JWT + rôles, pagination/recherche. Démo front statique."
     ],
     "detail": "$ alembic upgrade head\n[OK] tables: users, companies, jobs\n$ uvicorn api.main:app --reload\nGET /jobs?q=python → 42 résultats\nPOST /jobs {title:\"Dev FastAPI\"} → 201",
     "links": {"github": "https://github.com/pierrehouzeau/Jobboard_project", "demo": "#"}
@@ -25,8 +25,8 @@
     "tags": ["Front", "UI", "Portfolio"],
     "summary": "CV animé et accessible, sections pliables, thème clair/sombre et export PDF responsive.",
     "about": [
-      "CV interactif 100% HTML/CSS présenté comme un petit terminal. La navigation se fait via des \"commandes\" (ancres/hash) sans JavaScript, en s’appuyant sur :target et :has pour ouvrir les sections (help, about, skills, education, soft, langs, all). L’interface inclut un écran de boot animé et une barre de commandes sticky.",
-      "Le design est responsive et accessible : variables CSS, dégradés/effets légers, focus visible, et barres de compétences animées en CSS. L’objectif est un rendu propre et lisible, avec zéro JS pour la navigation et un export PDF soigné."
+      "CV 100% HTML/CSS orienté accessibilité. Navigation par ancres (:target/:has), zéro JS.",
+      "Thème clair/sombre et export PDF propre. Structure sémantique, styles simples et robustes."
     ],
     "detail": "$ open index.html\nSections: expérience/skills/formation\nExport PDF → cv-pierre.pdf\nAudit accessibilité: pass (contrast, tab, aria)",
     "links": {"github": "https://github.com/pierrehouzeau/cv-intractif-html-css", "demo": "#"}
@@ -41,8 +41,8 @@
     "tags": ["ML", "Data", "Time Series"],
     "summary": "Prétraitement météo, features temporelles et régression (RandomForest) pour prédire température/pluie.",
     "about": [
-      "Objectif : prédire la concentration d’ozone (O3obs) et réduire l’erreur (RMSE). Données tabulaires avec contrôle qualité et EDA (distributions, corrélations, outliers). Prétraitement : imputation (médiane/KNN), normalisation/standardisation et transformations lorsque nécessaire.",
-      "Modèles testés : régressions (OLS/Lasso/Ridge), k‑NN, arbres/forêts, XGBoost. Sélection via validation croisée + GridSearch, métrique principale RMSE sur jeu de test en surveillant biais/variance. Résultats : bonnes prédictions et compréhension des facteurs influents grâce aux visualisations (parity plot, importances)."
+      "Régression pour prédire O3/variables météo. EDA + prétraitement (imputation, normalisation).",
+      "Sélection par CV + grid search (OLS/Lasso/Ridge, k‑NN, RF, XGBoost). RMSE et plots (parity, importances)."
     ],
     "detail": "$ python train.py --dataset meteo.csv\nFeatures: lag[1..7], rolling[7,14]\nRMSE(temp): 1.9 — RMSE(pluie): 0.12\nExport → models/meteo_rf.joblib",
     "links": {"github": "https://github.com/pierrehouzeau/ozone-ml-regression", "demo": "#"}

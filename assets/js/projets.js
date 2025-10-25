@@ -91,8 +91,7 @@
     if(dialogEl) dialogEl.setAttribute('aria-labelledby','modal-title');
     info.append(
       titleEl,
-      el('div','muted', `${p.year}`),
-      el('p','', p.summary||'')
+      el('div','muted', `${p.year}`)
     );
     // Icônes de technos (modale)
     const techIconsModal = el('div','tech-icons');
@@ -108,8 +107,10 @@
     const desc=el('div','modal-desc');
     desc.appendChild(el('p','', p.summary || "Aperçu du projet."));
 
-    const body = el('div','modal-body');
-    body.append(info, desc);
+    const body = el('div','modal-body stack');
+    // Afficher d'abord le texte explicatif (full width), séparateur léger, puis infos principales
+    const sep = el('div','modal-sep');
+    body.append(desc, sep, info);
 
     // Texte classique: 1–2 paragraphes explicatifs si fournis
     if (Array.isArray(p.about)) {
