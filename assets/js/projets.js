@@ -87,6 +87,19 @@
 
     const body = el('div','modal-body');
     body.append(info, desc);
+
+    // Bloc détails (objectif / commandes / sorties) si fourni
+    if (p.detail) {
+      const term = el('div','term');
+      const bar = el('div','term-bar');
+      bar.innerHTML = '<span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>';
+      const title = el('div','term-title','project.log');
+      const screen = document.createElement('pre');
+      screen.className = 'term-screen';
+      screen.textContent = p.detail;
+      term.append(bar, title, screen);
+      body.appendChild(term);
+    }
     header.append(cover);
     modalContent.append(header, body);
 
