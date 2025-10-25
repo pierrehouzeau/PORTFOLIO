@@ -202,18 +202,18 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 /* Focus */
 :focus-visible{outline:2px solid color-mix(in oklab, var(--brand) 60%, #fff); outline-offset:2px; border-radius:10px}
 
-/* Compétences — Marquee redesign */
+/* Compétences — Icon wall */
 #competences{ position:relative }
-.skills-marquee{ display:grid; gap:16px }
-.skills-band{ overflow:hidden; padding:14px; border-radius:16px; border:1px solid var(--line); background:linear-gradient(180deg,#fff,#fafbff); box-shadow:var(--shadow) }
-.skills-band .scroller{ display:flex; gap:12px; width:max-content; animation: marquee 28s linear infinite }
-.skills-band.reverse .scroller{ animation-direction: reverse }
-.skills-band .track{ display:flex; gap:12px }
-.badge{ display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid var(--line); border-radius:999px; background:#fff; box-shadow:0 10px 20px rgba(2,6,23,.06); white-space:nowrap; transition: transform .22s ease, box-shadow .22s ease, opacity .35s ease; opacity:0; transform: translateY(6px) }
-.badge.in{ opacity:1; transform:none }
-.badge:hover{ transform: translateY(-2px) scale(1.02); box-shadow:0 16px 32px rgba(2,6,23,.12) }
-.badge img{ width:18px; height:18px; filter: grayscale(10%); opacity:.95 }
-@keyframes marquee{ from{ transform: translateX(0) } to{ transform: translateX(-50%) } }
+.skills-wall{ display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:14px }
+.bubble{ display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 10px 24px rgba(2,6,23,.06); cursor:default; transition: transform .25s ease, box-shadow .25s ease, opacity .4s ease; opacity:0; transform: translateY(8px) }
+.bubble.in{ opacity:1; transform:none }
+.bubble:hover{ transform: translateY(-3px) scale(1.02); box-shadow:0 18px 40px rgba(2,6,23,.12) }
+.bubble img{ width:22px; height:22px; filter: grayscale(10%); opacity:.95 }
+.bubble span{ font-weight:600 }
+/* Léger flottement alterné */
+.skills-wall .bubble:nth-child(odd){ animation: floatY 6s ease-in-out infinite }
+.skills-wall .bubble:nth-child(even){ animation: floatY 7s ease-in-out infinite reverse }
+@keyframes floatY{ 0%{ transform: translateY(0) } 50%{ transform: translateY(-4px) } 100%{ transform: translateY(0) } }
 .sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
 /* Canvas layer (hero) */

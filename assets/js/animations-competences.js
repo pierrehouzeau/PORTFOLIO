@@ -5,8 +5,8 @@
   function onIncludesLoaded(){
     const section = document.getElementById('competences');
     if(!section) return;
-    // Supporter l'ancien et le nouveau design
-    const tiles = Array.from(section.querySelectorAll('.skill, .badge'));
+    // Supporter les différents designs
+    const tiles = Array.from(section.querySelectorAll('.skill, .badge, .bubble'));
     if(!tiles.length) return;
 
     // Apparition en cascade à l’entrée dans le viewport
