@@ -151,6 +151,7 @@ section::after{  bottom:0; background:linear-gradient(0deg, rgba(2,6,23,.06), tr
 .tags{display:flex;gap:8px;flex-wrap:wrap}
 .tech-icons{ display:flex; gap:8px; align-items:center; margin:6px 0 8px }
 .tech-icons img{ width:18px; height:18px; filter: grayscale(100%); opacity:.9 }
+.insight{ color: var(--muted); font-style: italic; margin:4px 0 0 }
 .open-indicator{position:absolute; right:12px; top:12px; font-size:12px; background:#0b1220; color:#fff; padding:4px 8px; border-radius:999px}
 
 /* Aligner les boutons (CTA) en bas de chaque carte pour un rendu homogène */

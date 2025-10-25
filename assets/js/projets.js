@@ -120,6 +120,7 @@
       const blocks = p.detail.split(/\n\n+/).map(s => s.replace(/^\$\s*/gm, '').trim()).filter(Boolean);
       (blocks.slice(0,2)).forEach(par => desc.appendChild(el('p','', par)));
     }
+    if(p.insight){ desc.appendChild(el('p','insight', p.insight)); }
     header.append(cover);
     modalContent.append(header, body);
 

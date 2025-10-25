@@ -14,6 +14,8 @@
     ],
     "detail": "$ alembic upgrade head\n[OK] tables: users, companies, jobs\n$ uvicorn api.main:app --reload\nGET /jobs?q=python → 42 résultats\nPOST /jobs {title:\"Dev FastAPI\"} → 201",
     "links": {"github": "https://github.com/pierrehouzeau/Jobboard_project", "demo": "#"}
+    ,
+    "insight": "Choix FastAPI pour rapidité et typage; focus sécurité JWT/rôles et recherche paginate."
   },
   {
     "id": 2,
@@ -26,10 +28,12 @@
     "summary": "CV animé et accessible, sections pliables, thème clair/sombre et export PDF responsive.",
     "about": [
       "CV 100% HTML/CSS orienté accessibilité. Navigation par ancres (:target/:has), zéro JS.",
-      "Thème clair/sombre et export PDF propre. Structure sémantique, styles simples et robustes."
+      "Écran de démarrage, barre de commandes sticky, sections pliables. Structure sémantique et styles robustes."
     ],
     "detail": "$ open index.html\nSections: expérience/skills/formation\nExport PDF → cv-pierre.pdf\nAudit accessibilité: pass (contrast, tab, aria)",
     "links": {"github": "https://github.com/pierrehouzeau/cv-intractif-html-css", "demo": "#"}
+    ,
+    "insight": "Exercice d’accessibilité: navigable au clavier, lisible sans JS et structure sémantique."
   },
   {
     "id": 3,
@@ -46,5 +50,7 @@
     ],
     "detail": "$ python train.py --dataset meteo.csv\nFeatures: lag[1..7], rolling[7,14]\nRMSE(temp): 1.9 — RMSE(pluie): 0.12\nExport → models/meteo_rf.joblib",
     "links": {"github": "https://github.com/pierrehouzeau/ozone-ml-regression", "demo": "#"}
+    ,
+    "insight": "Validation sérieuse (CV + grid search); comparaison modèles et interprétabilité (importances)."
   }
 ]
