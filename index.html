@@ -25,8 +25,18 @@
   <script src="assets/js/animations-competences.js" defer></script>
   <script src="assets/js/competences.js" defer></script>
   <script src="assets/js/contact.js" defer></script>
-  <!-- Cursor FX now handled by React island (CursorFX) in react/dist/assets/bar.js -->
-  <!-- Îlot React: Progress bar (bundle local) -->
-  <script type="module" src="react/dist/assets/bar.js"></script>
+  <!-- Îlot React (progress bar + cursor) -->
+  <!-- On charge le bundle différemment en local et sur GitHub Pages -->
+  <script>
+    (function(){
+      var src = (location.hostname.endsWith('github.io')
+        ? '/PORTFOLIO/react/dist/assets/bar.js'
+        : 'react/dist/assets/bar.js');
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.src = src;
+      document.currentScript.after(s);
+    })();
+  </script>
 </body>
 </html>
