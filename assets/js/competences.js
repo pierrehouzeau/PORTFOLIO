@@ -6,14 +6,13 @@
     const chips = document.querySelectorAll('.skill-tabs .tab');
     if(!groups || !allGrid || !chips.length) return;
 
-    // Construire la grille à plat à partir des groupes
+    // Construire la grille à plat à partir des groupes (déplacer les tuiles au lieu de cloner)
     const tiles = [];
     groups.querySelectorAll('.skill-group').forEach(group => {
       const cat = group.dataset.cat;
       group.querySelectorAll('.tile').forEach(t => {
-        const c = t.cloneNode(true);
-        c.dataset.cat = cat; // pour filtrage multi
-        tiles.push(c);
+        t.dataset.cat = cat; // pour filtrage multi
+        tiles.push(t);
       });
     });
     const frag = document.createDocumentFragment();
@@ -21,6 +20,9 @@
     allGrid.appendChild(frag);
     // Masquer les groupes (on travaille sur la grille à plat)
     groups.style.display = 'none';
+
+    // Assure la visibilité immédiate des tuiles même si l'animation s'est initialisée avant
+    requestAnimationFrame(() => tiles.forEach(t => t.classList.add('in')));
 
     const selected = new Set();
 
