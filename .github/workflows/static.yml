@@ -18,7 +18,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,16 +27,25 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # ➜ On prépare un dossier propre à déployer (sans react/, .github/, etc.)
+      - name: Prepare artifact
+        run: |
+          rm -rf public
+          mkdir -p public
+          rsync -av \
+            --exclude='react/' \
+            --exclude='.github/' \
+            --exclude='.git/' \
+            --exclude='README.md' \
+            --exclude='.gitignore' \
+            ./ public/
+
+      # ➜ On uploade UNIQUEMENT ce dossier
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            ./
-            !react/
-            !.github/
-            !README.md
-            !.gitignore
+          path: ./public
 
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy
         uses: actions/deploy-pages@v4
