@@ -88,17 +88,13 @@
     const body = el('div','modal-body');
     body.append(info, desc);
 
-    // Bloc détails (objectif / commandes / sorties) si fourni
-    if (p.detail) {
-      const term = el('div','term');
-      const bar = el('div','term-bar');
-      bar.innerHTML = '<span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>';
-      const title = el('div','term-title','project.log');
-      const screen = document.createElement('pre');
-      screen.className = 'term-screen';
-      screen.textContent = p.detail;
-      term.append(bar, title, screen);
-      body.appendChild(term);
+    // Texte classique: 1–2 paragraphes explicatifs si fournis
+    if (Array.isArray(p.about)) {
+      p.about.forEach(par => desc.appendChild(el('p','', par)));
+    } else if (typeof p.detail === 'string' && p.detail.trim()) {
+      // Fallback: transforme le texte multi‑lignes en 1–2 paragraphes lisibles
+      const blocks = p.detail.split(/\n\n+/).map(s => s.replace(/^\$\s*/gm, '').trim()).filter(Boolean);
+      (blocks.slice(0,2)).forEach(par => desc.appendChild(el('p','', par)));
     }
     header.append(cover);
     modalContent.append(header, body);

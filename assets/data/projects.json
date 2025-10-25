@@ -3,11 +3,15 @@
     "id": 1,
     "slug": "jobboard",
     "title": "Job Board — plateforme d'offres",
-    "year": 2024,
+    "year": 2025,
     "image": "assets/img/projects/Projet_Jobboard.png",
     "tech": ["HTML", "CSS", "JavaScript", "FastAPI", "MySQL"],
     "tags": ["Web", "Back‑end", "API", "DB"],
     "summary": "CRUD offres/entreprises, auth, recherche full‑text, API REST FastAPI et persistance MySQL.",
+    "about": [
+      "Application web de type job board permettant aux entreprises de publier des offres et aux candidats de les consulter. L'interface propose une recherche, des filtres et une pagination pour naviguer efficacement dans les résultats.",
+      "Côté serveur, l'API REST est développée avec FastAPI et persiste les données dans MySQL. J'ai mis en place l'authentification, les opérations CRUD, des migrations Alembic et une recherche full‑text pour améliorer la pertinence des requêtes."
+    ],
     "detail": "$ alembic upgrade head\n[OK] tables: users, companies, jobs\n$ uvicorn api.main:app --reload\nGET /jobs?q=python → 42 résultats\nPOST /jobs {title:\"Dev FastAPI\"} → 201",
     "links": {"github": "https://github.com/pierrehouzeau/Jobboard_project", "demo": "#"}
   },
@@ -15,11 +19,15 @@
     "id": 2,
     "slug": "cv-interactif",
     "title": "CV interactif",
-    "year": 2024,
+    "year": 2025,
     "image": "assets/img/projects/ProjetCV_intéractif.png",
     "tech": ["HTML", "CSS"],
     "tags": ["Front", "UI", "Portfolio"],
     "summary": "CV animé et accessible, sections pliables, thème clair/sombre et export PDF responsive.",
+    "about": [
+      "Un CV en ligne focalisé sur l'accessibilité et la lisibilité. Les sections sont pliables, la navigation au clavier est fluide et les contrastes sont soignés pour garantir une bonne expérience quel que soit le contexte.",
+      "J'ai ajouté un thème clair/sombre et un export PDF responsive pour obtenir un rendu propre à l'impression. La structure HTML est sémantique et le CSS privilégie la simplicité et la robustesse."
+    ],
     "detail": "$ open index.html\nSections: expérience/skills/formation\nExport PDF → cv-pierre.pdf\nAudit accessibilité: pass (contrast, tab, aria)",
     "links": {"github": "https://github.com/pierrehouzeau/cv-intractif-html-css", "demo": "#"}
   },
@@ -27,11 +35,15 @@
     "id": 3,
     "slug": "meteo-ml",
     "title": "Prédiction météo (Machine Learning)",
-    "year": 2023,
+    "year": 2025,
     "image": "assets/img/projects/Projet_ML.png",
     "tech": ["Python", "Pandas", "scikit‑learn"],
     "tags": ["ML", "Data", "Time Series"],
     "summary": "Prétraitement météo, features temporelles et régression (RandomForest) pour prédire température/pluie.",
+    "about": [
+      "Projet de régression supervisée pour prévoir des variables météo (température/pluie) à partir de séries temporelles. Le pipeline inclut le nettoyage des données, l'ingénierie de variables temporelles et l'évaluation rigoureuse.",
+      "Plusieurs modèles sont testés (dont RandomForest) avec des features de type lag et moyennes glissantes. Les résultats sont suivis via des métriques (RMSE) et les notebooks/scripts permettent de réentraîner et comparer rapidement."
+    ],
     "detail": "$ python train.py --dataset meteo.csv\nFeatures: lag[1..7], rolling[7,14]\nRMSE(temp): 1.9 — RMSE(pluie): 0.12\nExport → models/meteo_rf.joblib",
     "links": {"github": "https://github.com/pierrehouzeau/ozone-ml-regression", "demo": "#"}
   }
