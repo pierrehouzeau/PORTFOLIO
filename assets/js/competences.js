@@ -1,44 +1,64 @@
 // Tabs de catégories pour Compétences
 (function(){
-  function initTabs(){
-    const container = document.getElementById('skillGroups');
-    const tabs = document.querySelectorAll('.skill-tabs .tab');
-    if(!container || !tabs.length) return;
+  function initFilters(){
+    const groups = document.getElementById('skillGroups');
+    const allGrid = document.getElementById('skillsAll');
+    const chips = document.querySelectorAll('.skill-tabs .tab');
+    if(!groups || !allGrid || !chips.length) return;
 
-    function show(cat){
-      const groups = Array.from(container.querySelectorAll('.skill-group'));
-      let shown = 0;
-      groups.forEach(g => {
-        const ok = (cat==='all') || g.dataset.cat === cat;
-        g.classList.toggle('hidden', !ok);
-        if(ok) shown++;
+    // Construire la grille à plat à partir des groupes
+    const tiles = [];
+    groups.querySelectorAll('.skill-group').forEach(group => {
+      const cat = group.dataset.cat;
+      group.querySelectorAll('.tile').forEach(t => {
+        const c = t.cloneNode(true);
+        c.dataset.cat = cat; // pour filtrage multi
+        tiles.push(c);
       });
-      container.classList.toggle('single', shown===1);
+    });
+    const frag = document.createDocumentFragment();
+    tiles.forEach(t => frag.appendChild(t));
+    allGrid.appendChild(frag);
+    // Masquer les groupes (on travaille sur la grille à plat)
+    groups.style.display = 'none';
+
+    const selected = new Set();
+
+    function refresh(){
+      // Si aucun filtre → Tous
+      const showAll = selected.size === 0;
+      chips.forEach(btn => {
+        const cat = btn.getAttribute('data-cat');
+        const pressed = showAll ? (cat==='all') : (cat!=='all' && selected.has(cat));
+        btn.classList.toggle('active', pressed);
+        btn.setAttribute('aria-pressed', String(pressed));
+      });
+
+      tiles.forEach(t => {
+        if(showAll){ t.style.display=''; return; }
+        const ok = selected.has(t.dataset.cat);
+        t.style.display = ok ? '' : 'none';
+      });
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected','true');
-        const cat = tab.getAttribute('data-cat');
-        show(cat);
+    chips.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-cat');
+        if(cat==='all'){ selected.clear(); }
+        else{
+          if(selected.has(cat)) selected.delete(cat); else selected.add(cat);
+        }
+        refresh();
       });
-      // Navigation clavier basique (gauche/droite)
-      tab.addEventListener('keydown', (e) => {
-        if(e.key!=='ArrowRight' && e.key!=='ArrowLeft') return;
-        e.preventDefault();
-        const arr = Array.from(tabs);
-        const i = arr.indexOf(tab);
-        const next = e.key==='ArrowRight' ? arr[(i+1)%arr.length] : arr[(i-1+arr.length)%arr.length];
-        next.focus(); next.click();
+      btn.addEventListener('keydown', (e) => {
+        if(e.key!=='Enter' && e.key!==' '){ return; }
+        e.preventDefault(); btn.click();
       });
     });
 
     // État initial
-    show('all');
+    refresh();
   }
 
-  document.addEventListener('includes-loaded', initTabs);
+  document.addEventListener('includes-loaded', initFilters);
 })();
-

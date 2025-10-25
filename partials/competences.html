@@ -2,17 +2,17 @@
   <div class="container">
     <div class="section-head">
       <h2>Compétences</h2>
-      <p class="subtitle">Technos principales — naviguez par catégorie.</p>
+      <p class="subtitle">Technos principales — sélection multiple par catégorie.</p>
     </div>
 
-    <div class="skill-tabs" role="tablist" aria-label="Catégories de compétences">
-      <button class="tab active" role="tab" aria-selected="true" data-cat="all">Tous</button>
-      <button class="tab" role="tab" aria-selected="false" data-cat="langages">Langages</button>
-      <button class="tab" role="tab" aria-selected="false" data-cat="frontend">Front‑end</button>
-      <button class="tab" role="tab" aria-selected="false" data-cat="backend">Back‑end</button>
-      <button class="tab" role="tab" aria-selected="false" data-cat="data-ml">Data / ML</button>
-      <button class="tab" role="tab" aria-selected="false" data-cat="db">Base de données</button>
-      <button class="tab" role="tab" aria-selected="false" data-cat="outils">Outils</button>
+    <div class="skill-tabs" aria-label="Filtres de catégories">
+      <button class="tab active" aria-pressed="true" data-cat="all">Tous</button>
+      <button class="tab" aria-pressed="false" data-cat="langages">Langages</button>
+      <button class="tab" aria-pressed="false" data-cat="frontend">Front‑end</button>
+      <button class="tab" aria-pressed="false" data-cat="backend">Back‑end</button>
+      <button class="tab" aria-pressed="false" data-cat="data-ml">Data / ML</button>
+      <button class="tab" aria-pressed="false" data-cat="db">Base de données</button>
+      <button class="tab" aria-pressed="false" data-cat="outils">Outils</button>
     </div>
 
     <div class="skill-groups" id="skillGroups">
@@ -68,5 +68,8 @@
         </div>
       </section>
     </div>
+
+    <!-- Grille à plat générée par JS (toutes les tuiles) -->
+    <div id="skillsAll" class="skills-tiles" aria-live="polite"></div>
   </div>
 </section>
