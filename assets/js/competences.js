@@ -27,6 +27,8 @@
         const ok = selected.has(t.dataset.cat);
         t.style.display = ok ? '' : 'none';
       });
+      // Laisse la grille s'étendre si besoin (évite la coupe)
+      allGrid.style.height = 'auto';
     }
 
     chips.forEach(btn => {
@@ -56,7 +58,8 @@
         if(h > 0){
           baseline = Math.max(baseline, h);
           allGrid.style.minHeight = baseline + 'px';
-          allGrid.style.height = baseline + 'px';
+          // ne fige pas la hauteur: permet d'afficher la dernière ligne
+          allGrid.style.height = 'auto';
         }
       });
     }

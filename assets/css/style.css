@@ -213,7 +213,7 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 .skill-group{ padding:14px }
 .skill-group.hidden{ display:none }
 .skill-groups.single{ grid-template-columns: 1fr; max-width: 980px; margin: 0 auto }
-.skills-tiles{ display:grid; gap:16px; grid-template-columns: repeat(6, 160px); justify-content:center; align-content:start; align-items:start; overflow:hidden }
+.skills-tiles{ display:grid; gap:16px; grid-template-columns: repeat(6, 160px); justify-content:center; align-content:start; align-items:start; overflow:visible }
 @media(max-width: 1200px){ .skills-tiles{ grid-template-columns: repeat(5, 160px) } }
 @media(max-width: 1000px){ .skills-tiles{ grid-template-columns: repeat(4, 160px) } }
 @media(max-width: 800px){ .skills-tiles{ grid-template-columns: repeat(3, 160px) } }
