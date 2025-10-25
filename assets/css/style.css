@@ -233,6 +233,13 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 
 /* Canvas layer (hero) */
 .fx-canvas{position:absolute; inset:0; z-index:1; pointer-events:none}
+/* Mobile overrides placed AFTER base rules to win cascade */
+@media(max-width: 620px){
+  #competences .skills-tiles{ grid-template-columns: repeat(3, 110px); gap:12px }
+  #competences .skills-tiles .tile{ width:110px; height:110px }
+  #competences .skills-tiles .tile img{ width:22px; height:22px }
+  #competences .skills-tiles .tile span{ font-size:12px }
+}
 @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important} }
 
 /* === Spotlight & focus de section Projets (version CSS comme le snippet) === */
