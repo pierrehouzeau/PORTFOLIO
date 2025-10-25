@@ -217,13 +217,30 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 .sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
 #competences{ position:relative }
-#competences::before{ content:""; position:absolute; inset:-40px 0 -40px 0; background: linear-gradient(180deg,#ffffff,#f7f9ff); z-index:-1; animation: bgShift 14s ease-in-out infinite alternate }
+#competences::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg,#ffffff,#f7f9ff); z-index:-1; animation: bgShift 14s ease-in-out infinite alternate }
 #competences::after{ content:""; position:absolute; width:420px; height:420px; right:5%; top:10%; filter:blur(36px); opacity:.35; pointer-events:none; z-index:-1;
   background: radial-gradient(40% 40% at 50% 50%, #93c5fd, transparent 60%),
               radial-gradient(40% 40% at 65% 35%, #c4b5fd, transparent 60%),
               radial-gradient(35% 35% at 35% 65%, #a7f3d0, transparent 60%);
   animation: float 10s ease-in-out infinite alternate; border-radius:50%; }
 @keyframes bgShift{ from{ filter: none } to{ filter: hue-rotate(8deg) brightness(1.02) } }
+
+/* Décor roue de compétences (arrière‑plan, discret) */
+.skills-decor{ position:absolute; inset:0; pointer-events:none; z-index:0 }
+.skills-decor .skills-wheel{ position:absolute; right:6%; top:18%; width:320px; height:320px; border-radius:50%; opacity:.14; animation: spin 40s linear infinite }
+.skills-decor .skills-wheel img{ position:absolute; top:50%; left:50%; width:26px; height:26px; transform-origin: center; filter: grayscale(10%); opacity:.95 }
+.skills-decor .skills-wheel img:nth-child(1){ transform: rotate(0deg) translate(135px) rotate(0deg) }
+.skills-decor .skills-wheel img:nth-child(2){ transform: rotate(30deg) translate(135px) rotate(-30deg) }
+.skills-decor .skills-wheel img:nth-child(3){ transform: rotate(60deg) translate(135px) rotate(-60deg) }
+.skills-decor .skills-wheel img:nth-child(4){ transform: rotate(90deg) translate(135px) rotate(-90deg) }
+.skills-decor .skills-wheel img:nth-child(5){ transform: rotate(120deg) translate(135px) rotate(-120deg) }
+.skills-decor .skills-wheel img:nth-child(6){ transform: rotate(150deg) translate(135px) rotate(-150deg) }
+.skills-decor .skills-wheel img:nth-child(7){ transform: rotate(180deg) translate(135px) rotate(-180deg) }
+.skills-decor .skills-wheel img:nth-child(8){ transform: rotate(210deg) translate(135px) rotate(-210deg) }
+.skills-decor .skills-wheel img:nth-child(9){ transform: rotate(240deg) translate(135px) rotate(-240deg) }
+.skills-decor .skills-wheel img:nth-child(10){ transform: rotate(270deg) translate(135px) rotate(-270deg) }
+.skills-decor .skills-wheel img:nth-child(11){ transform: rotate(300deg) translate(135px) rotate(-300deg) }
+.skills-decor .skills-wheel img:nth-child(12){ transform: rotate(330deg) translate(135px) rotate(-330deg) }
 
 /* Canvas layer (hero) */
 .fx-canvas{position:absolute; inset:0; z-index:1; pointer-events:none}
