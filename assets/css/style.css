@@ -213,8 +213,11 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 .skill-group{ padding:14px }
 .skill-group.hidden{ display:none }
 .skill-groups.single{ grid-template-columns: 1fr; max-width: 980px; margin: 0 auto }
-.skills-tiles{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(160px, 160px)); justify-content:center; align-content:start; align-items:start; overflow:hidden }
-@media(max-width: 620px){ .skills-tiles{ grid-template-columns: repeat(auto-fit, minmax(140px, 140px)) } }
+.skills-tiles{ display:grid; gap:16px; grid-template-columns: repeat(6, 160px); justify-content:center; align-content:start; align-items:start; overflow:hidden }
+@media(max-width: 1200px){ .skills-tiles{ grid-template-columns: repeat(5, 160px) } }
+@media(max-width: 1000px){ .skills-tiles{ grid-template-columns: repeat(4, 160px) } }
+@media(max-width: 800px){ .skills-tiles{ grid-template-columns: repeat(3, 160px) } }
+@media(max-width: 620px){ .skills-tiles{ grid-template-columns: repeat(3, 140px) } }
 .tile{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; width:160px; height:160px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(180deg,#fff,#fafbff); box-shadow:var(--shadow); transition: transform .25s ease, box-shadow .3s ease, opacity .4s ease; opacity:0; transform: translateY(10px) scale(.98) }
 @media(max-width: 620px){ .tile{ width:140px; height:140px } }
 .tile.in{ opacity:1; transform:none }
