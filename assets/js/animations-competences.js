@@ -6,7 +6,7 @@
     const section = document.getElementById('competences');
     if(!section) return;
     // Supporter les différents designs
-    const tiles = Array.from(section.querySelectorAll('.skill, .badge, .bubble'));
+    const tiles = Array.from(section.querySelectorAll('.skill, .badge, .bubble, .tile'));
     if(!tiles.length) return;
 
     // Apparition en cascade à l’entrée dans le viewport
