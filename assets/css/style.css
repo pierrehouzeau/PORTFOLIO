@@ -217,7 +217,12 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 @media(max-width: 1200px){ .skills-tiles{ grid-template-columns: repeat(5, 160px) } }
 @media(max-width: 1000px){ .skills-tiles{ grid-template-columns: repeat(4, 160px) } }
 @media(max-width: 800px){ .skills-tiles{ grid-template-columns: repeat(3, 160px) } }
-@media(max-width: 620px){ .skills-tiles{ grid-template-columns: repeat(3, 140px) } }
+@media(max-width: 620px){
+  .skills-tiles{ grid-template-columns: repeat(3, 120px) }
+  .tile{ width:120px; height:120px }
+  .tile img{ width:26px; height:26px }
+  .tile span{ font-size:12px }
+}
 @media(max-width: 480px){
   .skills-tiles{ grid-template-columns: repeat(2, 120px); gap:12px }
   .tile{ width:120px; height:120px }
