@@ -5,21 +5,46 @@
   function hash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31 + s.charCodeAt(i))|0; } return Math.abs(h); }
   function gradientFor(){ return `linear-gradient(135deg,#e6f0ff,#ece7ff 60%,#e7fff5)` }
 
-  // Modal singleton
-  let modal, modalContent, modalScreen;
+  // Modal singleton + accessibilité (focus trap, ARIA)
+  let modal, modalContent;
+  let dialogEl, closeBtn;
+  let previouslyFocused = null;
+  const FOCUSABLE = 'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
+  function focusables(){ return dialogEl ? Array.from(dialogEl.querySelectorAll(FOCUSABLE)).filter(el=>!el.hasAttribute('disabled') && el.offsetParent!==null) : []; }
+  function trapKeydown(e){
+    if(e.key !== 'Tab') return;
+    const f = focusables(); if(!f.length){ e.preventDefault(); return; }
+    const first=f[0], last=f[f.length-1];
+    const active=document.activeElement;
+    if(e.shiftKey){ if(active===first || !dialogEl.contains(active)){ e.preventDefault(); last.focus(); } }
+    else { if(active===last || !dialogEl.contains(active)){ e.preventDefault(); first.focus(); } }
+  }
+  function setBackgroundHidden(hidden){
+    const nodes = Array.from(document.querySelectorAll('body > *:not(.modal-overlay)'));
+    nodes.forEach(n=>{ if(hidden){ n.setAttribute('aria-hidden','true'); n.setAttribute('inert',''); } else { n.removeAttribute('aria-hidden'); n.removeAttribute('inert'); } });
+  }
   function ensureModal(){
     if(modal) return modal;
     modal = el('div','modal-overlay');
     modal.innerHTML = '';
-    const dialog = el('div','modal-dialog');
-    const close = el('button','modal-close','×'); close.setAttribute('aria-label','Fermer');
+    dialogEl = el('div','modal-dialog');
+    dialogEl.setAttribute('role','dialog');
+    dialogEl.setAttribute('aria-modal','true');
+    closeBtn = el('button','modal-close','×'); closeBtn.setAttribute('aria-label','Fermer');
     modalContent = el('div','modal-content');
-    dialog.append(close, modalContent);
-    modal.appendChild(dialog);
+    dialogEl.append(closeBtn, modalContent);
+    modal.appendChild(dialogEl);
     document.body.appendChild(modal);
     // close handlers
-    function hide(){ modal.classList.remove('open'); document.body.classList.remove('modal-open'); }
-    close.addEventListener('click', hide);
+    function hide(){
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      modal.removeEventListener('keydown', trapKeydown);
+      setBackgroundHidden(false);
+      if(previouslyFocused && document.contains(previouslyFocused)) previouslyFocused.focus();
+      previouslyFocused = null;
+    }
+    closeBtn.addEventListener('click', hide);
     modal.addEventListener('click', (e)=>{ if(e.target===modal) hide(); });
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('open')) hide(); });
     return modal;
@@ -33,8 +58,11 @@
     cover.style.background = gradientFor(p);
 
     const info = el('div','modal-info');
+    const titleEl = el('h3','modal-title', p.title);
+    titleEl.id = 'modal-title';
+    if(dialogEl) dialogEl.setAttribute('aria-labelledby','modal-title');
     info.append(
-      el('h3','modal-title', p.title),
+      titleEl,
       el('div','muted', `${p.year} • ${p.tech?.join(', ')||''}`),
       el('p','', p.summary||'')
     );
@@ -53,9 +81,14 @@
     header.append(cover);
     modalContent.append(header, body);
 
-    // open
+    // open + accessibilité
+    previouslyFocused = document.activeElement;
     document.body.classList.add('modal-open');
+    setBackgroundHidden(true);
     modal.classList.add('open');
+    modal.addEventListener('keydown', trapKeydown);
+    const f = focusables();
+    if(f.length){ f[0].focus(); } else { closeBtn?.focus(); }
   }
 
   function typeWriter(target, text, speed=12){

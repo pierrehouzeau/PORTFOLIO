@@ -2,9 +2,55 @@
   <div class="container">
     <div class="section-head">
       <h2>Contact</h2>
-      <p></p>
+      <p class="subtitle">Envoyé moi direct un mail à l'aide du form ci-dessous.</p>
     </div>
-    <!-- zone vide pour formulaire -->
+
+    <div class="contact-grid">
+      <form id="contactForm" class="form-card" novalidate>
+        <div>
+          <label for="c_name">Nom</label>
+          <input id="c_name" name="name" type="text" placeholder="Votre nom" required />
+        </div>
+        <div>
+          <label for="c_email">Email</label>
+          <input id="c_email" name="email" type="email" placeholder="vous@example.com" required />
+        </div>
+        <div>
+          <label for="c_subject">Sujet</label>
+          <input id="c_subject" name="subject" type="text" placeholder="Sujet du message" required />
+          <div class="chips-wrap">
+            <div class="hint">Suggestions rapides</div>
+            <div class="chips" id="subjectChips" aria-label="Suggestions de sujet">
+              <button type="button" class="chip" data-key="freelance">💼 Proposition de projet</button>
+              <button type="button" class="chip" data-key="stage">🎓 Stage / Alternance</button>
+              <button type="button" class="chip" data-key="oss">🧩 Collaboration open‑source</button>
+              <button type="button" class="chip" data-key="rdv">📞 Rendez‑vous</button>
+              <button type="button" class="chip" data-key="feedback">💬 Feedback</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="c_message">Message</label>
+          <textarea id="c_message" name="message" placeholder="Votre message..." minlength="10" required></textarea>
+          <div class="hint" id="msgCount">0 caractères</div>
+        </div>
+        <!-- Champ piège anti‑spam (honeypot) -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <div class="cta">
+          <button type="submit" class="btn primary">Envoyer</button>
+          <span class="hint" id="sendHint" aria-live="polite">Le message sera envoyé sans ouvrir votre mail.</span>
+        </div>
+      </form>
+      
+      <!-- Colonne droite remplacée par un texte statique (plus simple/utile) -->
+      <div class="cv-card">
+        <h3 class="cv-title">Comment je réponds</h3>
+        <ul class="cv-meta">
+          <li>Réponse sous 24–48h</li>
+          <li>Si urgent: préciser dans le sujet</li>
+          <li>Merci d’indiquer le contexte/projet</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
-

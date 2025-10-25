@@ -167,6 +167,31 @@ input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid 
 textarea{min-height:140px;resize:vertical}
 .hint{color:var(--muted);font-size:12px}
 
+/* Contact layout */
+.contact-grid{display:grid;gap:16px;grid-template-columns:1.2fr .8fr;align-items:start}
+@media(max-width:900px){ .contact-grid{grid-template-columns:1fr} }
+
+/* Chips suggestions */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chips-wrap{margin-top:8px}
+.chip{--b:var(--brand); padding:8px 12px; border-radius:999px; border:1px solid color-mix(in oklab, var(--b) 28%, var(--line)); background:linear-gradient(135deg, color-mix(in oklab, var(--b) 8%, #fff), #fff 60%); font-weight:600; cursor:pointer}
+.chip:hover{box-shadow:var(--shadow)}
+
+/* Contact form card */
+.form-card{ background:linear-gradient(180deg,#fff,#fafbff); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px }
+.form-card .hint{ margin-top:2px }
+
+/* Inputs focus ring harmonisé (bleu→violet→vert) */
+input:focus-visible, textarea:focus-visible{
+  outline:none;
+  border-color: color-mix(in oklab, var(--brand) 40%, var(--line));
+  box-shadow:
+    0 0 0 3px rgba(59,130,246,0.15),
+    0 0 0 6px rgba(167,139,250,0.10),
+    0 0 0 9px rgba(52,211,153,0.08);
+}
+
+
 /* Footer */
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
 

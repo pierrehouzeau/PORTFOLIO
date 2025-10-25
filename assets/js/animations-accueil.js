@@ -32,7 +32,7 @@
     state={back,ribbons,t:0,style};
   }
 
-  function draw(ctx){ const d=state; d.t += 0.35; ctx.clearRect(0,0,W,H); ctx.globalCompositeOperation='source-over';
+  function draw(ctx){ const d=state; d.t += 0.70; ctx.clearRect(0,0,W,H); ctx.globalCompositeOperation='source-over';
     // Paramètres communs pour des mouvements homogènes et fluides
     const k1=0.0016, k2=0.0011;        // fréquences proches pour douceur
     const vx1=1.0, vx2=1.0;            // mêmes vitesses pour toutes les bandes
