@@ -240,6 +240,23 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
   #competences .skills-tiles .tile img{ width:22px; height:22px }
   #competences .skills-tiles .tile span{ font-size:12px }
 }
+/* Échelons supplémentaires pour très petits écrans */
+@media(max-width: 540px){
+  #competences .skills-tiles{ grid-template-columns: repeat(3, 105px); gap:10px }
+  #competences .skills-tiles .tile{ width:105px; height:105px }
+  #competences .skills-tiles .tile img{ width:20px; height:20px }
+}
+@media(max-width: 420px){
+  #competences .skills-tiles{ grid-template-columns: repeat(3, 96px); gap:10px }
+  #competences .skills-tiles .tile{ width:96px; height:96px }
+  #competences .skills-tiles .tile img{ width:18px; height:18px }
+  #competences .skills-tiles .tile span{ font-size:11px }
+}
+@media(max-width: 360px){
+  #competences .skills-tiles{ grid-template-columns: repeat(3, 88px); gap:8px }
+  #competences .skills-tiles .tile{ width:88px; height:88px }
+  #competences .skills-tiles .tile img{ width:16px; height:16px }
+}
 @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important} }
 
 /* === Spotlight & focus de section Projets (version CSS comme le snippet) === */
