@@ -5,11 +5,12 @@
   function onIncludesLoaded(){
     const section = document.getElementById('competences');
     if(!section) return;
-    const tiles = Array.from(section.querySelectorAll('.skill'));
+    // Supporter l'ancien et le nouveau design
+    const tiles = Array.from(section.querySelectorAll('.skill, .badge'));
     if(!tiles.length) return;
 
     // Apparition en cascade à l’entrée dans le viewport
-    if(!prefersReduced){
+    if(!prefersReduced && tiles.length){
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(entry => {
           if(entry.isIntersecting){
@@ -37,4 +38,3 @@
 
   document.addEventListener('includes-loaded', onIncludesLoaded);
 })();
-

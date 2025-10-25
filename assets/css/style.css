@@ -202,21 +202,19 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 /* Focus */
 :focus-visible{outline:2px solid color-mix(in oklab, var(--brand) 60%, #fff); outline-offset:2px; border-radius:10px}
 
-/* Compétences */
-.skills-grid{ display:grid; gap:16px; grid-template-columns: repeat(3, 1fr) }
-@media(max-width: 900px){ .skills-grid{ grid-template-columns: 1fr 1fr } }
-@media(max-width: 620px){ .skills-grid{ grid-template-columns: 1fr } }
-.skill-cat h3{ margin:0 0 8px; font-size:16px }
-.skill-cat .icons{ display:flex; flex-wrap:wrap; gap:10px }
-.skill{ width:64px; height:64px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); background:#fff; border-radius:16px; box-shadow: var(--shadow); transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, opacity .35s ease; opacity:0; transform: translateY(8px) scale(.96) }
-.skill.in{ opacity:1; transform: none }
-.skill:hover{ transform: translateY(-2px) scale(1.02) rotate(-1deg); box-shadow: 0 16px 40px rgba(2,6,23,.12) }
-.skill.pop{ animation: pop .32s ease-out both }
-@keyframes pop{ 0%{ transform:translateY(0) scale(1) } 50%{ transform:translateY(-3px) scale(1.04) } 100%{ transform:translateY(-2px) scale(1.02) } }
-.skill img{ width:32px; height:32px; filter: grayscale(12%); opacity:.96 }
-.sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
-
+/* Compétences — Marquee redesign */
 #competences{ position:relative }
+.skills-marquee{ display:grid; gap:16px }
+.skills-band{ overflow:hidden; padding:14px; border-radius:16px; border:1px solid var(--line); background:linear-gradient(180deg,#fff,#fafbff); box-shadow:var(--shadow) }
+.skills-band .scroller{ display:flex; gap:12px; width:max-content; animation: marquee 28s linear infinite }
+.skills-band.reverse .scroller{ animation-direction: reverse }
+.skills-band .track{ display:flex; gap:12px }
+.badge{ display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid var(--line); border-radius:999px; background:#fff; box-shadow:0 10px 20px rgba(2,6,23,.06); white-space:nowrap; transition: transform .22s ease, box-shadow .22s ease, opacity .35s ease; opacity:0; transform: translateY(6px) }
+.badge.in{ opacity:1; transform:none }
+.badge:hover{ transform: translateY(-2px) scale(1.02); box-shadow:0 16px 32px rgba(2,6,23,.12) }
+.badge img{ width:18px; height:18px; filter: grayscale(10%); opacity:.95 }
+@keyframes marquee{ from{ transform: translateX(0) } to{ transform: translateX(-50%) } }
+.sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
 /* Canvas layer (hero) */
 .fx-canvas{position:absolute; inset:0; z-index:1; pointer-events:none}
