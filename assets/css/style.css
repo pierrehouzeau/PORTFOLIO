@@ -211,6 +211,10 @@ footer .socials{ display:flex; gap:12px }
 footer .socials a{ display:inline-block; padding:8px 12px; border:1px solid var(--line); border-radius:999px; color:#0b1220; background:#fff; font-weight:600 }
 footer .socials a:hover{ box-shadow:var(--shadow) }
 
+/* Toast (messages brefs) */
+.toast{ position:fixed; top:78px; left:50%; transform:translateX(-50%) translateY(-10px); background:#0b1220; color:#fff; padding:10px 14px; border-radius:10px; box-shadow:var(--shadow); opacity:0; pointer-events:none; transition: opacity .25s ease, transform .25s ease; z-index:80; }
+.toast.in{ opacity:.95; transform:translateX(-50%) translateY(0) }
+
 /* Focus */
 :focus-visible{outline:2px solid color-mix(in oklab, var(--brand) 60%, #fff); outline-offset:2px; border-radius:10px}
 

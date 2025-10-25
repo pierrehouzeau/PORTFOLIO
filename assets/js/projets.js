@@ -4,6 +4,30 @@
   function el(tag, cls, html){ const n=document.createElement(tag); if(cls) n.className=cls; if(html!==undefined) n.innerHTML=html; return n; }
   function hash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31 + s.charCodeAt(i))|0; } return Math.abs(h); }
   function gradientFor(){ return `linear-gradient(135deg,#e6f0ff,#ece7ff 60%,#e7fff5)` }
+  // Toast léger pour messages (ex: démo indisponible)
+  function showToast(msg){
+    let box=document.querySelector('.toast');
+    if(!box){
+      box=document.createElement('div');
+      box.className='toast';
+      box.setAttribute('role','status');
+      box.setAttribute('aria-live','polite');
+      document.body.appendChild(box);
+    }
+    box.textContent=msg;
+    box.classList.add('in');
+    clearTimeout(box._t);
+    box._t=setTimeout(()=>box.classList.remove('in'),2200);
+  }
+  function attachDemo(btn, url){
+    btn.addEventListener('click', (e)=>{
+      const u=(url||'').trim();
+      if(!u || u==='#'){
+        e.preventDefault();
+        showToast('Démo non disponible pour le moment.');
+      }
+    });
+  }
   // Mapping d'icônes pour les technos (noir/blanc via Simple Icons)
   const ICONS = {
     'html': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg',
@@ -99,7 +123,7 @@
     info.appendChild(techIconsModal);
     if(p.tags?.length){ const tags=el('div','tags'); p.tags.forEach(t=> tags.appendChild(el('span','tag', t))); info.appendChild(tags); }
     const actions=el('div','cta');
-    if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
+    if(p.links?.demo){ const a=el('a','btn primary','Démo'); a.href=p.links.demo||'#'; a.target='_blank'; a.rel='noreferrer noopener'; attachDemo(a, p.links.demo); actions.appendChild(a); }
     const g1=el('a','btn','GitHub'); const repo=(p.links&&p.links.github)||GITHUB_PROFILE; g1.href=repo; g1.target='_blank'; g1.rel='noreferrer noopener'; g1.setAttribute('aria-label',`Ouvrir ${p.title} sur GitHub`); actions.appendChild(g1);
     info.appendChild(actions);
 
@@ -187,7 +211,7 @@
 
     // Actions (sans bouton "Détails" — la carte est cliquable)
     const actions=el('div','cta');
-    if(p.links?.demo){ const a=el('a','btn primary','Demo'); a.href=p.links.demo; a.target='_blank'; a.rel='noreferrer noopener'; actions.appendChild(a); }
+    if(p.links?.demo){ const a=el('a','btn primary','Démo'); a.href=p.links.demo||'#'; a.target='_blank'; a.rel='noreferrer noopener'; attachDemo(a, p.links.demo); actions.appendChild(a); }
     const g=el('a','btn','GitHub'); const repoUrl=(p.links&&p.links.github)||GITHUB_PROFILE; g.href=repoUrl; g.target='_blank'; g.rel='noreferrer noopener'; g.setAttribute('aria-label',`Ouvrir ${p.title} sur GitHub`); actions.appendChild(g);
     content.appendChild(actions);
 
