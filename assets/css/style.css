@@ -194,6 +194,10 @@ input:focus-visible, textarea:focus-visible{
 
 /* Footer */
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
+footer .footer-grid{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap }
+footer .socials{ display:flex; gap:12px }
+footer .socials a{ display:inline-block; padding:8px 12px; border:1px solid var(--line); border-radius:999px; color:#0b1220; background:#fff; font-weight:600 }
+footer .socials a:hover{ box-shadow:var(--shadow) }
 
 /* Focus */
 :focus-visible{outline:2px solid color-mix(in oklab, var(--brand) 60%, #fff); outline-offset:2px; border-radius:10px}
