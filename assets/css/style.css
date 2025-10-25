@@ -208,13 +208,22 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 @media(max-width: 620px){ .skills-grid{ grid-template-columns: 1fr } }
 .skill-cat h3{ margin:0 0 8px; font-size:16px }
 .skill-cat .icons{ display:flex; flex-wrap:wrap; gap:10px }
-.skill{ width:56px; height:56px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); background:#fff; border-radius:14px; box-shadow: var(--shadow); transition: transform .12s ease, box-shadow .2s ease }
-.skill:hover{ transform: translateY(-2px); box-shadow: 0 16px 40px rgba(2,6,23,.12) }
-.skill img{ width:28px; height:28px; filter: grayscale(15%); opacity:.95 }
+.skill{ width:64px; height:64px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); background:#fff; border-radius:16px; box-shadow: var(--shadow); transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, opacity .35s ease; opacity:0; transform: translateY(8px) scale(.96) }
+.skill.in{ opacity:1; transform: none }
+.skill:hover{ transform: translateY(-2px) scale(1.02) rotate(-1deg); box-shadow: 0 16px 40px rgba(2,6,23,.12) }
+.skill.pop{ animation: pop .32s ease-out both }
+@keyframes pop{ 0%{ transform:translateY(0) scale(1) } 50%{ transform:translateY(-3px) scale(1.04) } 100%{ transform:translateY(-2px) scale(1.02) } }
+.skill img{ width:32px; height:32px; filter: grayscale(12%); opacity:.96 }
 .sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
 #competences{ position:relative }
-#competences::before{ content:""; position:absolute; inset:-40px 0 -40px 0; background: linear-gradient(180deg,#fff,#f7f9ff); z-index:-1 }
+#competences::before{ content:""; position:absolute; inset:-40px 0 -40px 0; background: linear-gradient(180deg,#ffffff,#f7f9ff); z-index:-1; animation: bgShift 14s ease-in-out infinite alternate }
+#competences::after{ content:""; position:absolute; width:420px; height:420px; right:5%; top:10%; filter:blur(36px); opacity:.35; pointer-events:none; z-index:-1;
+  background: radial-gradient(40% 40% at 50% 50%, #93c5fd, transparent 60%),
+              radial-gradient(40% 40% at 65% 35%, #c4b5fd, transparent 60%),
+              radial-gradient(35% 35% at 35% 65%, #a7f3d0, transparent 60%);
+  animation: float 10s ease-in-out infinite alternate; border-radius:50%; }
+@keyframes bgShift{ from{ filter: none } to{ filter: hue-rotate(8deg) brightness(1.02) } }
 
 /* Canvas layer (hero) */
 .fx-canvas{position:absolute; inset:0; z-index:1; pointer-events:none}

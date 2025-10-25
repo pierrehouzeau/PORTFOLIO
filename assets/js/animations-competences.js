@@ -1,0 +1,40 @@
+// Animations pour la section Compétences (révélation en cascade + micro‑interactions)
+(function(){
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function onIncludesLoaded(){
+    const section = document.getElementById('competences');
+    if(!section) return;
+    const tiles = Array.from(section.querySelectorAll('.skill'));
+    if(!tiles.length) return;
+
+    // Apparition en cascade à l’entrée dans le viewport
+    if(!prefersReduced){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            tiles.forEach((el, i) => {
+              el.style.transitionDelay = (i * 35) + 'ms';
+              requestAnimationFrame(()=> el.classList.add('in'));
+            });
+            io.disconnect();
+          }
+        });
+      }, { root: null, threshold: 0.2 });
+      io.observe(section);
+    }else{
+      tiles.forEach(el => el.classList.add('in'));
+    }
+
+    // Hover: petite pulsation + tilt très léger
+    if(!prefersReduced){
+      tiles.forEach(el => {
+        el.addEventListener('pointerenter', ()=> el.classList.add('pop'));
+        el.addEventListener('pointerleave', ()=> el.classList.remove('pop'));
+      });
+    }
+  }
+
+  document.addEventListener('includes-loaded', onIncludesLoaded);
+})();
+
