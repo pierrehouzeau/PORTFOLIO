@@ -49,14 +49,15 @@
     // État initial
     refresh();
 
-    // Figer la hauteur de la grille (pour éviter les sauts quand on filtre)
+    // Ajuster la hauteur minimale de la grille en fonction du contenu
     let baseline = 0;
     function setBaselineHeight(){
       // Mesure après mise en page et images
       requestAnimationFrame(()=>{
         const h = Math.ceil(allGrid.getBoundingClientRect().height);
         if(h > 0){
-          baseline = Math.max(baseline, h);
+          // Baseline dynamique (peut rétrécir si le contenu est plus petit)
+          baseline = h;
           allGrid.style.minHeight = baseline + 'px';
           // ne fige pas la hauteur: permet d'afficher la dernière ligne
           allGrid.style.height = 'auto';
@@ -79,13 +80,17 @@
       setBaselineHeight();
     }
 
-    // Recalcule une base quand l'écran change, seulement si aucun filtre n'est actif
+    // Recalcule la base quand l'écran change
     let rId;
     window.addEventListener('resize', () => {
-      if(selected.size !== 0) return; // base reste stable si filtres actifs
       cancelAnimationFrame(rId);
       rId = requestAnimationFrame(setBaselineHeight);
     });
+
+    // Recalcule après chaque filtrage (évite le blanc inutile)
+    const prevRefresh = refresh;
+    function refreshAndResize(){ prevRefresh(); setBaselineHeight(); }
+    refresh = refreshAndResize;
   }
 
   document.addEventListener('includes-loaded', initFilters);
