@@ -48,14 +48,33 @@
     refresh();
 
     // Figer la hauteur de la grille (pour éviter les sauts quand on filtre)
+    let baseline = 0;
     function setBaselineHeight(){
-      // Mesure après mise en page
+      // Mesure après mise en page et images
       requestAnimationFrame(()=>{
         const h = Math.ceil(allGrid.getBoundingClientRect().height);
-        if(h > 0) allGrid.style.minHeight = h + 'px';
+        if(h > 0){
+          baseline = Math.max(baseline, h);
+          allGrid.style.minHeight = baseline + 'px';
+          allGrid.style.height = baseline + 'px';
+        }
       });
     }
-    setBaselineHeight();
+    // Attendre le chargement des icônes pour une mesure fiable
+    const imgs = Array.from(allGrid.querySelectorAll('img'));
+    let pending = imgs.filter(img=>!img.complete).length;
+    if(pending){
+      imgs.forEach(img=>{
+        if(!img.complete){
+          img.addEventListener('load', ()=>{ if(--pending===0) setBaselineHeight(); }, { once:true });
+          img.addEventListener('error', ()=>{ if(--pending===0) setBaselineHeight(); }, { once:true });
+        }
+      });
+      // filet de sécurité si aucun event ne se déclenche
+      setTimeout(setBaselineHeight, 400);
+    }else{
+      setBaselineHeight();
+    }
 
     // Recalcule une base quand l'écran change, seulement si aucun filtre n'est actif
     let rId;
