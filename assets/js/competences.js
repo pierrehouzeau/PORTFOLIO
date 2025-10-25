@@ -60,6 +60,24 @@
 
     // État initial
     refresh();
+
+    // Figer la hauteur de la grille (pour éviter les sauts quand on filtre)
+    function setBaselineHeight(){
+      // Mesure après mise en page
+      requestAnimationFrame(()=>{
+        const h = Math.ceil(allGrid.getBoundingClientRect().height);
+        if(h > 0) allGrid.style.minHeight = h + 'px';
+      });
+    }
+    setBaselineHeight();
+
+    // Recalcule une base quand l'écran change, seulement si aucun filtre n'est actif
+    let rId;
+    window.addEventListener('resize', () => {
+      if(selected.size !== 0) return; // base reste stable si filtres actifs
+      cancelAnimationFrame(rId);
+      rId = requestAnimationFrame(setBaselineHeight);
+    });
   }
 
   document.addEventListener('includes-loaded', initFilters);
