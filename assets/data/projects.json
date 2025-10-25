@@ -5,17 +5,30 @@
     "title": "Job Board — plateforme d'offres",
     "year": 2025,
     "image": "assets/img/projects/Projet_Jobboard.png",
-    "tech": ["HTML", "CSS", "JavaScript", "FastAPI", "MySQL"],
-    "tags": ["Web", "Back‑end", "API", "DB"],
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "FastAPI",
+      "MySQL"
+    ],
+    "tags": [
+      "Web",
+      "Back‑end",
+      "API",
+      "DB"
+    ],
     "summary": "CRUD offres/entreprises, auth, recherche full‑text, API REST FastAPI et persistance MySQL.",
     "about": [
       "Plateforme candidats/entreprises avec \"matching\" (likes/candidatures). API FastAPI + MySQL.",
-      "Rôle : schéma/Routes, auth JWT + rôles, pagination/recherche. Démo front statique."
+      "Rôle : schéma/routes, auth JWT + rôles, recherche et pagination. Démo front statique."
     ],
     "detail": "$ alembic upgrade head\n[OK] tables: users, companies, jobs\n$ uvicorn api.main:app --reload\nGET /jobs?q=python → 42 résultats\nPOST /jobs {title:\"Dev FastAPI\"} → 201",
-    "links": {"github": "https://github.com/pierrehouzeau/Jobboard_project", "demo": "#"}
-    ,
-    "insight": "Choix FastAPI pour rapidité et typage; focus sécurité JWT/rôles et recherche paginate."
+    "links": {
+      "github": "https://github.com/pierrehouzeau/Jobboard_project",
+      "demo": "#"
+    },
+    "insight": "Choix FastAPI pour rapidité et typage; focus sécurité JWT/rôles et recherche et pagination."
   },
   {
     "id": 2,
@@ -23,16 +36,25 @@
     "title": "CV interactif",
     "year": 2025,
     "image": "assets/img/projects/ProjetCV_intéractif.png",
-    "tech": ["HTML", "CSS"],
-    "tags": ["Front", "UI", "Portfolio"],
-    "summary": "CV animé et accessible, sections pliables, thème clair/sombre et export PDF responsive.",
+    "tech": [
+      "HTML",
+      "CSS"
+    ],
+    "tags": [
+      "Front",
+      "UI",
+      "Portfolio"
+    ],
+    "summary": "CV animé et accessible, sections pliables, mode terminal.",
     "about": [
       "CV 100% HTML/CSS orienté accessibilité. Navigation par ancres (:target/:has), zéro JS.",
       "Écran de démarrage, barre de commandes sticky, sections pliables. Structure sémantique et styles robustes."
     ],
-    "detail": "$ open index.html\nSections: expérience/skills/formation\nExport PDF → cv-pierre.pdf\nAudit accessibilité: pass (contrast, tab, aria)",
-    "links": {"github": "https://github.com/pierrehouzeau/cv-intractif-html-css", "demo": "#"}
-    ,
+    "detail": "$ open index.html\nSections: expérience/skills/formation\nAudit accessibilité: pass (contrast, tab, aria)",
+    "links": {
+      "github": "https://github.com/pierrehouzeau/cv-intractif-html-css",
+      "demo": "#"
+    },
     "insight": "Exercice d’accessibilité: navigable au clavier, lisible sans JS et structure sémantique."
   },
   {
@@ -41,16 +63,26 @@
     "title": "Prédiction météo (Machine Learning)",
     "year": 2025,
     "image": "assets/img/projects/Projet_ML.png",
-    "tech": ["Python", "Pandas", "scikit‑learn"],
-    "tags": ["ML", "Data", "Time Series"],
+    "tech": [
+      "Python",
+      "Pandas",
+      "scikit‑learn"
+    ],
+    "tags": [
+      "ML",
+      "Data",
+      "Time Series"
+    ],
     "summary": "Prétraitement météo, features temporelles et régression (RandomForest) pour prédire température/pluie.",
     "about": [
       "Régression pour prédire O3/variables météo. EDA + prétraitement (imputation, normalisation).",
       "Sélection par CV + grid search (OLS/Lasso/Ridge, k‑NN, RF, XGBoost). RMSE et plots (parity, importances)."
     ],
     "detail": "$ python train.py --dataset meteo.csv\nFeatures: lag[1..7], rolling[7,14]\nRMSE(temp): 1.9 — RMSE(pluie): 0.12\nExport → models/meteo_rf.joblib",
-    "links": {"github": "https://github.com/pierrehouzeau/ozone-ml-regression", "demo": "#"}
-    ,
+    "links": {
+      "github": "https://github.com/pierrehouzeau/ozone-ml-regression",
+      "demo": "#"
+    },
     "insight": "Validation sérieuse (CV + grid search); comparaison modèles et interprétabilité (importances)."
   }
 ]
