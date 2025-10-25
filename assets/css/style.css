@@ -217,8 +217,6 @@ footer .socials a:hover{ box-shadow:var(--shadow) }
 .sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
 #competences{ position:relative }
-#competences::before{ content:none }
-#competences::after{ content:none }
 
 /* Canvas layer (hero) */
 .fx-canvas{position:absolute; inset:0; z-index:1; pointer-events:none}
