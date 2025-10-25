@@ -54,8 +54,17 @@
     modalContent.innerHTML='';
     const header = el('div','modal-header');
     const cover = el('div','modal-cover');
-    // Plus d'images: on utilise un fond par défaut cohérent
-    cover.style.background = gradientFor(p);
+    // Image de couverture si disponible, sinon fond par défaut
+    if (p.image) {
+      const img = document.createElement('img');
+      img.src = p.image;
+      img.alt = `${p.title} — aperçu`;
+      // En cas d'échec de chargement, on revient au dégradé
+      img.onerror = () => { img.remove(); cover.style.background = gradientFor(p); };
+      cover.appendChild(img);
+    } else {
+      cover.style.background = gradientFor(p);
+    }
 
     const info = el('div','modal-info');
     const titleEl = el('h3','modal-title', p.title);
@@ -116,8 +125,16 @@
 
     // Vignette
     const thumb=el('div','thumb');
-    // Placeholder visuel uniforme (pas d'images pour le moment)
-    thumb.style.background = gradientFor();
+    // Vignette: image si fournie, sinon dégradé par défaut
+    if (p.image) {
+      const img = document.createElement('img');
+      img.src = p.image;
+      img.alt = `${p.title} — vignette`;
+      img.onerror = () => { img.remove(); thumb.style.background = gradientFor(); };
+      thumb.appendChild(img);
+    } else {
+      thumb.style.background = gradientFor();
+    }
     card.appendChild(thumb);
 
     // Contenu
